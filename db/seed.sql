@@ -28,7 +28,35 @@ VALUES
 ('Angel', 9, 'Secure and Reliable', 'I felt my belongings were safe in this storage place.', 5),
 ('Phillip', 10, 'Amazing Storage', 'A great storage experience overall. Highly recommend.', 5);
 
-INSERT INTO 
+
+
+INSERT INTO users (firstName, lastName, address, email, phone, verified, password, created_at, role)
+VALUES
+('Jerry', 'Jazz', '1400 Pennsylvania', 'jerry@gmail.com', '646-007-0000', true, 'password123', '2023-07-13', 'rentee'),
+('John', 'Doe', '789 Elm St', 'john@example.com', '555-123-4567', true, 'secure456', '2023-07-15', 'renter'),
+('Alice', 'Anderson', '123 Main St', 'alice@example.com', '555-123-4567', true, 'pass123', '2023-07-14', 'rentee'),
+('Emma', 'Smith', '456 Oak St', 'emma@example.com', '555-567-8901', true, 'secret789', '2023-07-16', 'renter'),
+('Sarah', 'Williams', '567 Park Ave', 'sarah@example.com', '555-987-6543', true, 'rent567', '2023-07-15', 'rentee'),
+('Michael', 'Brown', '890 Pine Ave', 'michael@example.com', '555-789-1234', true, 'pine123', '2023-07-18', 'renter'),
+('Ryan', 'Johnson', '890 Sunset Blvd', 'ryan@example.com', '555-567-8901', true, 'sun123', '2023-07-16', 'rentee'),
+('Olivia', 'Taylor', '123 Cedar Ln', 'olivia@example.com', '555-234-5678', true, 'cedar234', '2023-07-19', 'renter'),
+('Linda', 'Clark', '456 Lake Dr', 'linda@example.com', '555-456-7890', true, 'lake456', '2023-07-17', 'rentee'),
+('William', 'Harris', '234 Birch Rd', 'william@example.com', '555-345-6789', true, 'birch345', '2023-07-20', 'renter');
+
+
+
+INSERT INTO availability (listing_id, days_not_available, min_days, max_days)
+VALUES
+(1, NULL, 7, 60),
+(2, NULL, 2, 30),
+(3, NULL, 1, 90),
+(4, NULL, 6, 15),
+(5, NULL, 14, 31),
+(6, NULL, 3, 60),
+(7, NULL, 1, 30),
+(8, NULL, 4, 90),
+(9, NULL, 7, 60),
+(10, NULL, 1, 60);
 
 //run on terminal to run this files/ restart new
 //psql -U postgres -f db/schema.sql
