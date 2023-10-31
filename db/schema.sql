@@ -7,15 +7,29 @@ DROP TABLE IF EXISTS users;
 
 CREATE TABLE users (
     user_id SERIAL PRIMARY KEY,
-    firstName text,
-    lastName text,
-    address text,
+    firstName TEXT,
+    lastName TEXT,
+    address TEXT,
     email varchar(255) UNIQUE NOT NULL,
-    phone text,
-    verified boolean,
+    phone TEXT,
+    verified BOOLEAN,
     password varchar(255) NOT NULL,
     created_at date DEFAULT current_date,
-    role text
+    role TEXT
+);
+DROP TABLE IF EXISTS listing;
+
+CREATE TABLE listing (
+    listing_id SERIAL PRIMARY KEY,
+    address text,
+    size text,
+    price INTEGER,
+    posted_at date,
+    type text,
+    host INTEGER REFERENCES users (user_id),
+    rentee INTEGER REFERENCES users (user_id),
+    isRented boolean,
+    avg_rating INTEGER
 );
 
 DROP TABLE IF EXISTS user_reviews;
@@ -33,7 +47,7 @@ CREATE TABLE user_reviews (
 CREATE TABLE listing_reviews (
   id SERIAL PRIMARY KEY,
   author_id INTEGER REFERENCES users (user_id),
-  listing_id INTEGER REFERENCES users (user_id),
+  listing_id INTEGER REFERENCES listing (id),
   title TEXT NOT NULL, 
   body TEXT NOT NULL,
   rating INTEGER NOT NULL,
