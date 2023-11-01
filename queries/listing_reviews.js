@@ -46,3 +46,26 @@ const deleteListingReview = async (id) => {
     return error;
   }
 };
+
+
+//UPDATE
+const updateListingReview = async (id, review) => {
+  try {
+    const updatedReview = await db.one(
+      "UPDATE listing_reviews SET author_id=$1, listing_id=$2, title=$3, body=$4, rating=$5  where id=$6 RETURNING *",
+      [review.author_id, review.reviewed_id, review.title, review.body, review.rating, id]
+    );
+    return updatedReview;
+  }catch(error) {
+    return error;
+  }
+};
+
+
+module.exports = {
+  getAllListingReviews,
+  getListingReview,
+  createListingReview,
+  deleteListingReview,
+  updateListingReview,
+};
