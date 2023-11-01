@@ -40,7 +40,7 @@ const createAvailability = async (availability) => {
 const deleteAvailability = async (id) => {
     try {
       const deletedAvailability = await db.one(
-        "DELETE FROM availabilty WHERE id = $1 RETURNING *",
+        "DELETE FROM availability WHERE id = $1 RETURNING *",
         id
       );
       return deletedAvailability;
@@ -49,3 +49,24 @@ const deleteAvailability = async (id) => {
     }
 };
   
+
+//UPDATE
+const updateAvailability = async (id, availability) => {
+    try {
+      const updatedAvailability = await db.one(
+        "UPDATE availability SET listing_id=$1, days_not_available=$2, min_days=$3, max_days=$4  where id=$5 RETURNING *",
+        [availability.listing_id, availability.days_not_available, availability.min_days, availability.max_days,id]
+      );
+      return updatedAvailability;
+    }catch(error) {
+      return error;
+    }
+  };
+  
+  module.exports = {
+    getAllAvailability,
+    getAvailability,
+    createAvailability,
+    deleteAvailability,
+    updateAvailability,
+  };
