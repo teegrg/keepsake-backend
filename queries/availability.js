@@ -34,3 +34,18 @@ const createAvailability = async (availability) => {
         return error;
     }
 };
+
+
+//DELETE
+const deleteAvailability = async (id) => {
+    try {
+      const deletedAvailability = await db.one(
+        "DELETE FROM availabilty WHERE id = $1 RETURNING *",
+        id
+      );
+      return deletedAvailability;
+    } catch (error) {
+      return error;
+    }
+};
+  
