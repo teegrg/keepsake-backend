@@ -1,6 +1,6 @@
 const db = require("../db/dbConfig.js");
 
-//ALL Bookmarks
+//ALL LISTINGS
 const getAllListings = async () => {
     try {
       const allListings = await db.any("SELECT * FROM listing");
@@ -10,7 +10,7 @@ const getAllListings = async () => {
     }
   };
 
-  // ONE Bookmark
+  // ONE LISTING
   const getListing = async (id) => {
     try {
       const oneListing = await db.one("SELECT * FROM listing WHERE id=$1", id);
@@ -20,7 +20,7 @@ const getAllListings = async () => {
     }
   };
 
-  //CREATE new Bookmark
+  //CREATE NEW LISTING
 const createListing = async (listing) => {
   try {
     const newListing = await db.one(
