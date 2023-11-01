@@ -27,7 +27,7 @@ CREATE TABLE listing (
     posted_at date,
     type text,
     host INTEGER REFERENCES users (user_id),
-    rentee INTEGER REFERENCES users (user_id),
+    renter INTEGER REFERENCES users (user_id),
     isRented boolean,
     avg_rating INTEGER
 );
