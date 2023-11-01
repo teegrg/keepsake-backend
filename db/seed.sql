@@ -54,7 +54,16 @@ VALUES
 ('Grace', 'Hernandez', '234 Birch St', 'grace@example.com', '555-901-2345', true, 'birch901', '07/26/23', 'renter');
 
 
-
+INSERT INTO listing (address, size, price, posted_at, type, host, rentee, isRented, avg_rating)
+VALUES
+  ('Storage Unit A', '4x4', 50, '2023-10-15', 'Storage', 1, 2, TRUE, 4),
+  ('Storage Unit B', '5x5', 75, '2023-10-20', 'Storage', 2, 3, FALSE, 3),
+  ('Storage Unit C', '10x10', 120, '2023-10-25', 'Storage', 3, 4, TRUE, 5),
+  ('Storage Unit D', '10x20', 200, '2023-10-30', 'Storage', 4, 5, FALSE, 4);
+  ('Storage Unit E', '4x4', 50, '2023-10-15', 'Storage', 5, 6, TRUE, 4),
+  ('Storage Unit F', '5x5', 75, '2023-10-20', 'Storage', 5, 3, FALSE, 3),
+  ('Storage Unit G', '10x10', 120, '2023-10-25', 'Storage', 2, 1, TRUE, 5),
+  ('Storage Unit H', '10x20', 200, '2023-10-30', 'Storage', 1, 2, FALSE, 4);
 
 INSERT INTO availability (listing_id, days_not_available, min_days, max_days)
 VALUES
