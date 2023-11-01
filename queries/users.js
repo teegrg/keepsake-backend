@@ -33,3 +33,18 @@ const createUser = async (user) => {
       return error;
     }
   };
+
+
+//DELETE
+const deleteUser = async (id) => {
+    try {
+      const deletedUser = await db.one(
+        "DELETE FROM users WHERE id = $1 RETURNING *",
+        id
+      );
+      return deletedUser;
+    } catch (error) {
+      return error;
+    }
+  };
+  
