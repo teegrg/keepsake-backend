@@ -3,7 +3,7 @@ const db = require("../db/dbConfig.js");
 //ALL Bookmarks
 const getAllReviews = async () => {
     try {
-      const allReviews = await db.any("SELECT * FROM listing");
+      const allReviews = await db.any("SELECT * FROM user_reviews");
       return allReviews;
     } catch (error) {
       return error;
@@ -13,7 +13,7 @@ const getAllReviews = async () => {
   // ONE Bookmark
   const getReview = async (id) => {
     try {
-      const oneReview = await db.one("SELECT * FROM listing WHERE id=$1", id);
+      const oneReview = await db.one("SELECT * FROM user_reviews WHERE id=$1", id);
       return oneReview;
     } catch (error) {
       return error;
@@ -24,8 +24,8 @@ const getAllReviews = async () => {
 const createReview = async (review) => {
   try {
     const newReview = await db.one(
-      "INSERT INTO review (author_id, review_id, title, body, rating) VALUES($1, $2, $3, $4, $5) RETURNING *",
-      [review.address, review.size, review.price, review.posted_at, review.type, review.host, review.renter, review.isRented, review.avg_rating]
+      "INSERT INTO user_reviews (author_id, review_id, title, body, rating) VALUES($1, $2, $3, $4, $5) RETURNING *",
+      [review.author_id, review.reviewed_id, review.title, review.body, review.rating]
     );
     return newReview;
   } catch (error) {
@@ -37,7 +37,7 @@ const createReview = async (review) => {
 const deleteReview = async (id) => {
   try {
     const deletedReview = await db.one(
-      "DELETE FROM listing WHERE id = $1 RETURNING *",
+      "DELETE FROM user_reviews WHERE id = $1 RETURNING *",
       id
     );
     return deletedReview;
@@ -50,7 +50,7 @@ const deleteReview = async (id) => {
 const updateReview = async (id, review) => {
   try {
     const updatedReview = await db.one(
-      "UPDATE review SET author_id=$1, reviewed_id=$2, title=$3, body=$4, rating=$5  where id=$6 RETURNING *",
+      "UPDATE user_reviews SET author_id=$1, reviewed_id=$2, title=$3, body=$4, rating=$5  where id=$6 RETURNING *",
       [review.author_id, review.reviewed_id, review.title, review.body, review.rating, id]
     );
     return updatedReview;
