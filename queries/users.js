@@ -12,7 +12,7 @@ const getAllUsers = async () => {
 
 
   // ONE Bookmark
-const getUsers = async (id) => {
+const getUser = async (id) => {
     try {
       const oneUser = await db.one("SELECT * FROM users WHERE id=$1", id);
       return oneUser;
@@ -48,3 +48,24 @@ const deleteUser = async (id) => {
     }
   };
   
+
+//UPDATE
+const updateUser = async (id, user) => {
+    try {
+      const updatedUser = await db.one(
+        "UPDATE users SET firstName=$1, lastName=$2, address=$3, email=$4, phone=$5, verified=$6, password=$7, created_at=$8, role=$9  where id=$10 RETURNING *",
+        [user.firstName, user.lastName, user.address, user.email, user.phone, user.verified, user.password, user.created_at, id]
+      );
+      return updatedUser;
+    }catch(error) {
+      return error;
+    }
+  };
+  
+  module.exports = {
+    getAllUsers,
+    getUser,
+    createUser,
+    deleteUser,
+    updateUser,
+  };  
