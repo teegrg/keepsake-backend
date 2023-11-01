@@ -20,3 +20,16 @@ const getAllListingReviews = async () => {
       return error;
     }
   };
+
+    //CREATE NEW LISTING REVIEW
+const createListingReview = async (review) => {
+  try {
+    const newListingReview = await db.one(
+      "INSERT INTO listing_reviews (author_id, listing_id, title, body, rating) VALUES($1, $2, $3, $4, $5) RETURNING *",
+      [review.author_id, review.listing_id, review.title, review.body, review.rating]
+    );
+    return newListingReview;
+  } catch (error) {
+    return error;
+  }
+};
