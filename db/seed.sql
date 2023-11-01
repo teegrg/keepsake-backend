@@ -54,7 +54,7 @@ VALUES
 ('Grace', 'Hernandez', '234 Birch St', 'grace@example.com', '555-901-2345', true, 'birch901', '07/26/23', 'renter');
 
 
-INSERT INTO listing (address, size, price, posted_at, type, host, rentee, isRented, avg_rating)
+INSERT INTO listing (address, size, price, posted_at, type, host, renter, isRented, avg_rating)
 VALUES
   ('Storage Unit A', '4x4', 50, '2023-10-15', 'Storage', 1, 2, TRUE, 4),
   ('Storage Unit B', '5x5', 75, '2023-10-20', 'Storage', 2, 3, FALSE, 3),
