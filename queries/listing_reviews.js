@@ -33,3 +33,16 @@ const createListingReview = async (review) => {
     return error;
   }
 };
+
+//DELETE
+const deleteListingReview = async (id) => {
+  try {
+    const deletedListingReview = await db.one(
+      "DELETE FROM listing_reviews WHERE id = $1 RETURNING *",
+      id
+    );
+    return deletedListingReview;
+  } catch (error) {
+    return error;
+  }
+};
