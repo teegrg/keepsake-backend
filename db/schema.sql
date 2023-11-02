@@ -17,6 +17,7 @@ CREATE TABLE users (
   created_at date DEFAULT current_date,
   role TEXT
 );
+
 DROP TABLE IF EXISTS listing;
 
 CREATE TABLE listing (
@@ -41,8 +42,9 @@ CREATE TABLE user_reviews (
   title TEXT NOT NULL, 
   body TEXT NOT NULL,
   rating INTEGER NOT NULL,
-
 );
+
+DROP TABLE IF EXISTS listing_reviews;
 
 CREATE TABLE listing_reviews (
   id SERIAL PRIMARY KEY,
@@ -51,8 +53,9 @@ CREATE TABLE listing_reviews (
   title TEXT NOT NULL, 
   body TEXT NOT NULL,
   rating INTEGER NOT NULL,
-
 );
+
+DROP TABLE IF EXISTS availability;
 
 CREATE TABLE availability (
   id SERIAL PRIMARY KEY
