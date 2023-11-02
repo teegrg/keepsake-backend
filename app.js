@@ -11,17 +11,23 @@ app.use(express.json());
 
 //ROUTES
 app.get('/', (req, res) => {
-    res.send("Welcome!")
+    res.send("Welcome to KEEPSAKE!");
 })
+
 
 // Reviews ROUTES
 const user_reviewController = require("./controllers/user_reviewController.js");
 app.use("/userReviews", user_reviewController);
 
 const listing_reviewController = require("./controllers/listing_reviewController.js");
-app.use("/userReviews", listing_reviewController);
+app.use("/listingReviews", listing_reviewController);
 
-app.get("*", (req, res) =>{
+
+// LISTINGS ROUTES
+const listings = require("./controllers/listingsController");
+app.use("/listings", listings);
+
+app.get("*", (req, res) => {
     res.status(404).send("Page not found!");
 })
 
