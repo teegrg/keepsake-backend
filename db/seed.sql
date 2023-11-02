@@ -45,11 +45,11 @@ VALUES
 ('Ava', 'Martinez', '567 Maple Ln', 'ava@example.com', '555-123-4567', true, 'maple123', '07/24/23', 'host'),
 ('Henry', 'Garcia', '890 Cedar Dr', 'henry@example.com', '555-567-8901', true, 'cedar567', '07/25/23', 'host'),
 ('Ella', 'Lopez', '567 Willow Ave', 'ella@example.com', '555-345-6789', true, 'willow345', '07/27/23', 'renter'),
-('Linda', 'Clark', '456 Lake Dr', 'linda@example.com', '555-456-7890', true, 'lake456', '07/17/23', 'host'),
+('Linda', 'Clark', '456 Lake Dr', 'linda2@example.com', '555-456-7890', true, 'lake456', '07/17/23', 'host'),
 ('James', 'Wilson', '789 Oak Ave', 'james@example.com', '555-345-6789', true, 'oak789', '07/22/23', 'host'),
 ('Benjamin', 'Gonzalez', '123 Spruce Rd', 'benjamin@example.com', '555-678-9012', true, 'spruce678', '07/28/23', 'renter'),
 ('Sophie', 'Adams', '456 Elm St', 'sophie@example.com', '555-789-0123', true, 'elm123', '07/21/23', 'host'),
-('William', 'Harris', '234 Birch Rd', 'william@example.com', '555-345-6789', true, 'birch345', '07/20/23', 'renter'),
+('William', 'Harris', '234 Birch Rd', 'william2@example.com', '555-345-6789', true, 'birch345', '07/20/23', 'renter'),
 ('Sofia', 'Rodriguez', '456 Chestnut Dr', 'sofia@example.com', '555-234-5678', true, 'chestnut234', '07/30/23', 'renter'),
 ('Grace', 'Hernandez', '234 Birch St', 'grace@example.com', '555-901-2345', true, 'birch901', '07/26/23', 'renter');
 
@@ -59,7 +59,7 @@ VALUES
   ('Storage Unit A', '4x4', 50, '2023-10-15', 'Storage', 1, 2, TRUE, 4),
   ('Storage Unit B', '5x5', 75, '2023-10-20', 'Storage', 2, 3, FALSE, 3),
   ('Storage Unit C', '10x10', 120, '2023-10-25', 'Storage', 3, 4, TRUE, 5),
-  ('Storage Unit D', '10x20', 200, '2023-10-30', 'Storage', 4, 5, FALSE, 4);
+  ('Storage Unit D', '10x20', 200, '2023-10-30', 'Storage', 4, 5, FALSE, 4),
   ('Storage Unit E', '4x4', 50, '2023-10-15', 'Storage', 5, 6, TRUE, 4),
   ('Storage Unit F', '5x5', 75, '2023-10-20', 'Storage', 5, 3, FALSE, 3),
   ('Storage Unit G', '10x10', 120, '2023-10-25', 'Storage', 2, 1, TRUE, 5),
