@@ -1,17 +1,17 @@
 const express = require("express");
-const items = express.Router();
-// const { checkName, checkType, checkBoolean } = require("../validations/checkPlanets");
+const listings = express.Router();
+const { checkAddress, checkSize, checkBoolean } = require("../validations/checkListings");
 const {
-  getAllItems,
-  getOneItem,
-  createItem,
-  deleteItem,
-  updateItem
+  getAllListings,
+  getListing,
+  createListing,
+  deleteListing,
+  updateListing
 } = require("../queries/listings");
 
 // INDEX
-items.get("/", async (req, res) => {
-  const allItems = await getAllItems();
+listings.get("/", async (req, res) => {
+  const allItems = await getAllListings();
   if (allItems[0]) {
     res.status(200).json(allItems);
   }
@@ -21,9 +21,9 @@ items.get("/", async (req, res) => {
 });
 
 // SHOW
-items.get("/:id", async (req, res) => {
+listings.get("/:id", async (req, res) => {
   const { id } = req.params;
-  const item = await getOneItem(id);
+  const item = await getListing(id);
   if (item) {
     res.json(item);
   }
@@ -33,9 +33,9 @@ items.get("/:id", async (req, res) => {
 });
 
 // CREATE
-items.post("/", async (req, res) => {
+listings.post("/", checkAddress, checkSize, checkBoolean, async (req, res) => {
   try {
-    const item = await createItem(req.body);
+    const item = await createListing(req.body);
     res.json(item);
   }
   catch (error) {
@@ -44,9 +44,9 @@ items.post("/", async (req, res) => {
 });
 
 // DELETE
-items.delete("/:id", async (req, res) => {
+listings.delete("/:id", async (req, res) => {
   const { id } = req.params;
-  const deletedItem = await deleteItem(id);
+  const deletedItem = await deleteListing(id);
   if (deletedItem.id) {
     res.status(200).json(deletedItem);
   }
@@ -56,10 +56,10 @@ items.delete("/:id", async (req, res) => {
 });
 
 // UPDATE
-items.put("/:id", async (req, res) => {
+listings.put("/:id", checkAddress, checkSize, checkBoolean, async (req, res) => {
   const { id } = req.params;
-  const updatedItem = await updateItem(id, req.body);
+  const updatedItem = await updateListing(id, req.body);
   res.status(200).json(updatedItem);
 });
 
-module.exports = items;
+module.exports = listings;
