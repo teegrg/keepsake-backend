@@ -11,10 +11,14 @@ app.use(express.json());
 
 //ROUTES
 app.get('/', (req, res) => {
-    res.send("Welcome!")
+    res.send("Welcome to KEEPSAKE!");
 })
 
-app.get("*", (req, res) =>{
+// LISTINGS ROUTES
+const listings = require("./controllers/listingsController");
+app.use("/listings", listings);
+
+app.get("*", (req, res) => {
     res.status(404).send("Page not found!");
 })
 
