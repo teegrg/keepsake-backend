@@ -7,7 +7,6 @@ const {getAvailability} = require('../queries/availability')
 // // SHOW
 availability.get("/", async (req, res) => {
   const { listingId } = req.params;
-  console.log('test', listingId)
   const availability = await getAvailability(listingId);
   if (availability) {
     res.json(availability);

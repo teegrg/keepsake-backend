@@ -1,6 +1,8 @@
 const express = require("express");
-const user_review = express.Router();
+const user_review = express.Router({mergeParams: true});
 // const { checkName, checkType, checkBoolean } = require("../validations/checkPlanets");
+
+
 const {
   getAllReviews,
   getReview,
@@ -10,20 +12,22 @@ const {
 } = require("../queries/user_reviews");
 
 // INDEX
-user_review.get("/", async (req, res) => {
-  const allReviews = await getAllReviews();
-  if (allReviews[0]) {
-    res.status(200).json(allReviews);
-  }
-  else {
-    res.status(500).json({ error: "server error" });
-  }
-});
+// user_review.get("/", async (req, res) => {
+//   const allReviews = await getAllReviews();
+//   if (allReviews[0]) {
+//     res.status(200).json(allReviews);
+//   }
+//   else {
+//     res.status(500).json({ error: "server error" });
+//   }
+// });
 
 // SHOW
-user_review.get("/:id", async (req, res) => {
-  const { id } = req.params;
-  const review = await getReview(id);
+user_review.get("/", async (req, res) => {
+  const { userId } = req.params;
+
+  console.log(userId)
+  const review = await getReview(userId);
   if (review) {
     res.json(review);
   }

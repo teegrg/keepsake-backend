@@ -61,10 +61,20 @@ const updateUser = async (id, user) => {
   }
 };
   
+//COLLECT
+const collectListings = async (userId) =>{
+  try{
+    const listings = await db.any("SELECT * FROM listing WHERE host = $1", userId);
+    return listings
+  }catch(error){
+    return error
+  }
+}
 module.exports = {
   getAllUsers,
   getUser,
   createUser,
   deleteUser,
   updateUser,
+  collectListings
 };

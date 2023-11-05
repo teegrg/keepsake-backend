@@ -13,7 +13,7 @@ const getAllReviews = async () => {
   // ONE USER_REVIEWS
   const getReview = async (id) => {
     try {
-      const oneReview = await db.one("SELECT * FROM user_reviews WHERE id=$1", id);
+      const oneReview = await db.one("SELECT * FROM user_reviews WHERE reviewed_id=$1", id);
       return oneReview;
     } catch (error) {
       return error;
