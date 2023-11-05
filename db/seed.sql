@@ -1,7 +1,7 @@
 \c keepsake_dev;
 
 
-INSERT INTO users (firstName, lastName, address, email, phone, verified, password, created_at, role)
+INSERT INTO users (firstName, lastName, address, email, phone, isVerified, password, created_at, role)
 VALUES
 ('Jerry', 'Jazz', '1400 Pennsylvania', 'jerry@gmail.com', '646-007-0000', true, 'password123', '07/13/23', 'host'),
 ('John', 'Doe', '789 Elm St', 'johnw@example.com', '555-123-4567', true, 'secure456', '07/15/23', 'renter'),
