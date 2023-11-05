@@ -1,5 +1,10 @@
 const express = require("express");
 const users = express.Router();
+
+// Reviews ROUTES
+const user_reviewController = require("./user_reviewController");
+users.use("/:userId/reviews", user_reviewController);
+
 const {
   checkFirstName,
   checkLastName,
@@ -15,7 +20,8 @@ const {
   getUser,
   createUser,
   deleteUser,
-  updateUser
+  updateUser,
+  collectListings
 } = require("../queries/users");
 
 // INDEX
@@ -70,5 +76,17 @@ users.put("/:id", checkFirstName, checkLastName, checkAddress, checkEmail, check
   const updatedUser = await updateUser(id, req.body);
   res.status(200).json(updatedUser);
 });
+
+//COLLECT
+users.get('/:id/listings', async (req, res) =>{
+  const { id } = req.params;
+  
+  const all = await collectListings(id);
+  if(all[0]){
+    res.json(all)
+  }else{
+    res.status(404).json({error:"not found"})
+  }
+})
 
 module.exports = users;
