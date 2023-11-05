@@ -27,9 +27,6 @@ app.use("/listings", listings);
 const user_reviewController = require("./controllers/user_reviewController.js");
 app.use("/userReviews", user_reviewController);
 
-// const listing_reviewController = require("./controllers/listing_reviewController.js");
-// app.use("/listingReviews", listing_reviewController);
-
 
 app.get("*", (req, res) => {
     res.status(404).send("Page not found!");

@@ -14,7 +14,7 @@ const getAllAvailability = async () => {
 // ONE AVAILABILITY
 const getAvailability = async (id) => {
     try {
-        const oneAvailability = await db.one("SELECT * FROM availability WHERE id=$1", id);
+        const oneAvailability = await db.one("SELECT * FROM availability WHERE listing_id=$1", id);
         return oneAvailability;
     } catch (error) {
         return error;
