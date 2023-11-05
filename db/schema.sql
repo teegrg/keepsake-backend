@@ -41,7 +41,7 @@ CREATE TABLE user_reviews (
   reviewed_id INTEGER REFERENCES users (user_id),
   title TEXT NOT NULL, 
   body TEXT NOT NULL,
-  rating INTEGER NOT NULL,
+  rating INTEGER NOT NULL
 );
 
 DROP TABLE IF EXISTS listing_reviews;
@@ -49,19 +49,18 @@ DROP TABLE IF EXISTS listing_reviews;
 CREATE TABLE listing_reviews (
   id SERIAL PRIMARY KEY,
   author_id INTEGER REFERENCES users (user_id),
-  listing_id INTEGER REFERENCES listing (id),
+  listing_id INTEGER REFERENCES listing (listing_id),
   title TEXT NOT NULL, 
   body TEXT NOT NULL,
-  rating INTEGER NOT NULL,
+  rating INTEGER NOT NULL
 );
 
 DROP TABLE IF EXISTS availability;
 
 CREATE TABLE availability (
-  id SERIAL PRIMARY KEY
-  listing_id INTEGER REFERENCES user_id (user_id),
-  days_not_available DATE [],
+  id SERIAL PRIMARY KEY,
+  listing_id INTEGER REFERENCES listing (listing_id),
+  days_not_available DATE[],
   min_days INTEGER NOT NULL,
-  max_days INTEGER NOT NULL,
+  max_days INTEGER NOT NULL
 );
-
