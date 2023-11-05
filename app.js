@@ -14,6 +14,14 @@ app.get('/', (req, res) => {
     res.send("Welcome to KEEPSAKE!");
 })
 
+// USER ROUTES
+const users = require("./controllers/userController");
+app.use("/users", users);
+
+// LISTINGS ROUTES
+const listings = require("./controllers/listingsController");
+app.use("/listings", listings);
+
 
 // Reviews ROUTES
 const user_reviewController = require("./controllers/user_reviewController.js");
@@ -23,13 +31,9 @@ app.use("/userReviews", user_reviewController);
 // app.use("/listingReviews", listing_reviewController);
 
 
-// LISTINGS ROUTES
-const listings = require("./controllers/listingsController");
-app.use("/listings", listings);
-
 app.get("*", (req, res) => {
     res.status(404).send("Page not found!");
-})
+});
 
 //EXPORT
-module.exports = app
+module.exports = app;
