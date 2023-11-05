@@ -13,7 +13,7 @@ const getAllListings = async () => {
   // ONE LISTING
   const getListing = async (id) => {
     try {
-      const oneListing = await db.one("SELECT * FROM listing WHERE id=$1", id);
+      const oneListing = await db.one("SELECT * FROM listing WHERE listing_id=$1", id);
       return oneListing;
     } catch (error) {
       return error;
