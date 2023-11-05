@@ -9,6 +9,9 @@ const {
   updateListing
 } = require("../queries/listings");
 
+const listing_reviewController = require("./listing_reviewController.js");
+listings.use("/:listingId/reviews", listing_reviewController);
+
 // INDEX
 listings.get("/", async (req, res) => {
   const allItems = await getAllListings();

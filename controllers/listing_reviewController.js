@@ -1,5 +1,5 @@
 const express = require("express");
-const listing_review = express.Router();
+const listing_review = express.Router({mergeParams: true});
 // const { checkName, checkType, checkBoolean } = require("../validations/checkPlanets");
 const {
     getAllListingReviews,
@@ -11,7 +11,9 @@ const {
 
 // INDEX
 listing_review.get("/", async (req, res) => {
-  const allReviews = await getAllListingReviews();
+  const { listingId } = req.params;
+  
+  const allReviews = await getAllListingReviews(listingId);
   if (allReviews[0]) {
     res.status(200).json(allReviews);
   }
@@ -20,17 +22,17 @@ listing_review.get("/", async (req, res) => {
   }
 });
 
-// SHOW
-listing_review.get("/:id", async (req, res) => {
-  const { id } = req.params;
-  const review = await getListingReview(id);
-  if (review) {
-    res.json(review);
-  }
-  else {
-    res.status(404).json({ error: "not found" });
-  }
-});
+// // SHOW
+// listing_review.get("/", async (req, res) => {
+//   const { id } = req.params;
+//   const review = await getListingReview(id);
+//   if (review) {
+//     res.json(review);
+//   }
+//   else {
+//     res.status(404).json({ error: "not found" });
+//   }
+// });
 
 // CREATE
 listing_review.post("/", async (req, res) => {
