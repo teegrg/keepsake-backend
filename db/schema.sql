@@ -16,7 +16,7 @@ CREATE TABLE users (
   password varchar(255) NOT NULL,
   created_at date DEFAULT current_date,
   role TEXT,
-  image TEXT,
+  image TEXT
 );
 
 DROP TABLE IF EXISTS listing;
@@ -33,7 +33,7 @@ CREATE TABLE listing (
   isRented boolean,
   avg_rating INTEGER,
   description TEXT,
-  image TEXT,
+  image TEXT
 );
 
 DROP TABLE IF EXISTS user_reviews;
