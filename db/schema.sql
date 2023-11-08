@@ -15,7 +15,8 @@ CREATE TABLE users (
   isVerified BOOLEAN,
   password varchar(255) NOT NULL,
   created_at date DEFAULT current_date,
-  role TEXT
+  role TEXT,
+  image TEXT,
 );
 
 DROP TABLE IF EXISTS listing;
@@ -30,7 +31,9 @@ CREATE TABLE listing (
   host INTEGER REFERENCES users (user_id),
   renter INTEGER REFERENCES users (user_id),
   isRented boolean,
-  avg_rating INTEGER
+  avg_rating INTEGER,
+  description TEXT,
+  image TEXT,
 );
 
 DROP TABLE IF EXISTS user_reviews;
