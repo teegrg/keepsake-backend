@@ -1,7 +1,7 @@
 \c keepsake_dev;
 
 
-INSERT INTO users (firstName, lastName, address, email, phone, verified, password, created_at, role, image)
+INSERT INTO users (firstName, lastName, address, email, phone, isVerified, password, created_at, role, image)
 VALUES
 ('Jerry', 'Jazz', '1400 Pennsylvania', 'jerry@gmail.com', '646-007-0000', true, 'password123', '07/13/23', 'host', 'https://images.squarespace-cdn.com/content/v1/6091c3e4f5f6071721c43f77/1683711745725-O1R2JQOY9II73V828PYS/Midjourney+Headshot.jpg'),
 ('John', 'Doe', '789 Elm St', 'johnw@example.com', '555-123-4567', true, 'secure456', '07/15/23', 'renter', 'https://www.zdnet.com/a/img/resize/340751cf020716892a48de5bde0974eb2737031f/2023/07/17/f6c8e458-e4ee-4bba-8e98-4d17fd8fa11e/img-7506.jpg?auto=webp&width=740'),

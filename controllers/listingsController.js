@@ -9,8 +9,14 @@ const {
   updateListing
 } = require("../queries/listings");
 
+
+//LISTING REVIEW CONTROLLER
 const listing_reviewController = require("./listing_reviewController.js");
 listings.use("/:listingId/reviews", listing_reviewController);
+
+//AVAILABILITY CONTROLLER
+const availability = require("./availabilityController.js");
+listings.use("/:listingId/availability", availability);
 
 // INDEX
 listings.get("/", async (req, res) => {
