@@ -1,9 +1,9 @@
 const db = require("../db/dbConfig.js");
 
 //ALL LISTING REVIEWS
-const getAllListingReviews = async (listing_id) => {
+const getAllListingReviews = async () => {
     try {
-      const allReviews = await db.any("SELECT * FROM listing_reviews WHERE listing_id=$1", listing_id);
+      const allReviews = await db.any("SELECT * FROM listing_reviews")
       return allReviews;
     } catch (error) {
       return error;
@@ -52,8 +52,8 @@ const deleteListingReview = async (id) => {
 const updateListingReview = async (id, review) => {
   try {
     const updatedReview = await db.one(
-      "UPDATE listing_reviews SET author_id=$1, listing_id=$2, title=$3, body=$4, rating=$5  where id=$6 RETURNING *",
-      [review.author_id, review.reviewed_id, review.title, review.body, review.rating, id]
+      "UPDATE listing_reviews SET author_id=$1, listing_id=$2, title=$3, body=$4, rating=$5  where listing_id=$6 RETURNING *",
+      [review.author_id, review.listing_id, review.title, review.body, review.rating, id]
     );
     return updatedReview;
   }catch(error) {
