@@ -1,9 +1,81 @@
+const { hash } = require("bcryptjs");
 const db = require("../db/dbConfig.js");
+const {sign} = require('jsonwebtoken');
+const { SECRET } = require("../constants/index.js");
+
+//REGISTER
+const register = async (req, res) =>{
+  const {email, password} = req.body
+
+  try{
+    const hashedPassword = await hash(password,10)
+    await db.query('INSERT INTO users (email, password) VALUES ($1, $2)', [email, hashedPassword])
+    
+    return res.status(201).json({
+      succcess: true,
+      message: "Regristation Sucess!"
+    })
+  }catch(error){
+    console.log(error.message)
+    return res.status(500).json({
+      error: error.message
+    })
+  }
+}
+
+//LOGIN
+const login = async(req,res) =>{
+  let user = req.user
+  let payload = {
+    id: user.user_id,
+    email: user.email,
+  }
+  
+  try{
+    const token = await sign(payload, SECRET)
+    return res.status(200).cookie('token',token,{httpOnly: true}).json({
+      succcess: true,
+      message: "Logged in Successfully!",
+      id: user.user_id,
+      email: user.email,
+    })
+  }catch(error){
+    return res.status(500).json({
+      error:error.message
+    })
+  }
+}
+
+//VIEW PRIVATE INFO
+const protected = async (req, res) => {
+  try{
+    return res.status(200).json({
+      info:"protected",
+    })
+  }catch(error){
+    console.log(error.message)
+  }
+}
+
+//LOGOUT
+const logout = async (req, res) => {
+  try{
+    return res.status(200).clearCookie('token', {httpOnly: true}).json({
+      success:true,
+      message:"Logged out!"
+    })
+  }catch(error){
+    console.log(error.message)
+    return res.status(500).json({
+      error: error.message
+    })
+  }
+}
 
 //ALL USERS
 const getAllUsers = async () => {
   try {
-    const allUsers = await db.any("SELECT * FROM users");
+    const allUsers = await db.any("SELECT user_id, firstname, lastname, email, phone, verified, created_at, role FROM users");
     return allUsers;
   } catch (error) {
     return error;
@@ -72,6 +144,10 @@ const collectListings = async (userId) =>{
 }
 module.exports = {
   getAllUsers,
+  register,
+  login,
+  protected,
+  logout,
   getUser,
   createUser,
   deleteUser,

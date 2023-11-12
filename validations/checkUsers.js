@@ -1,3 +1,43 @@
+const {check} = require('express-validator')
+const db = require('../db/dbConfig')
+const { compare } = require('bcryptjs')
+
+
+//email validator
+const email = check('email').isEmail().withMessage('Please provide a valid email.')
+
+
+const emailExists = check('email').custom(async (value) =>{
+  const {results} = await db.query('SELECT * from users WHERE email = $1' , [value,
+  ])
+
+  if (results && results.length){
+    throw new Error('Email already exists.')
+  }
+})
+
+//password validator
+const password = check('password')
+.isLength({min:6, max:15})
+.withMessage('Password has to be between 6 to 16 characters')
+
+
+//login validation
+const loginFeildsCheck = check('email').custom(async(value, {req}) =>{
+  const user = await db.query('SELECT * FROM users WHERE email = $1', [value])
+  if (!user.length){
+    throw new Error ("Email does not exist")
+  }
+
+  const password = await compare(req.body.password, user[0].password)
+
+  if (!password){
+    throw new Error("Wrong Password")
+  }
+  req.user=user[0]
+})
+
+
 const checkFirstName = (req, res, next) => {
   if (req.body.firstName) {
     next();
@@ -25,15 +65,6 @@ const checkAddress = (req, res, next) => {
   }
 }
 
-const checkEmail = (req, res, next) => {
-  if (req.body.email) {
-    next();
-  }
-  else {
-    res.status(400).json({ error: "Email is required!" });
-  }
-}
-
 const checkPhone = (req, res, next) => {
   if (req.body.phone) {
     next();
@@ -43,14 +74,6 @@ const checkPhone = (req, res, next) => {
   }
 }
 
-const checkPassword = (req, res, next) => {
-  if (req.body.password) {
-    next();
-  }
-  else {
-    res.status(400).json({ error: "A password is required!" });
-  }
-}
 
 const checkBoolean = (req, res, next) => {
   const { isVerified } = req.body;
@@ -63,11 +86,11 @@ const checkBoolean = (req, res, next) => {
 };
 
 module.exports = {
+  registerValidation: [email, password, emailExists],
+  loginValidation: [loginFeildsCheck],
   checkFirstName,
   checkLastName,
   checkAddress,
-  checkEmail,
   checkPhone,
-  checkPassword,
   checkBoolean
 };
