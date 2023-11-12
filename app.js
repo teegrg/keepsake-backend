@@ -31,9 +31,9 @@ const listing_reviewController = require("./controllers/listing_reviewController
 app.use("/listingReviews", listing_reviewController);
 
 
-//PROPERTY_TYPE ROUTE
-const property_typeController = require("./controllers/property_typeController.js");
-app.use("/property_type, property_typeController");
+// //PROPERTY_TYPE ROUTE
+// const property_typeController = require("./controllers/property_typeController.js");
+// app.use("/property_type, property_typeController");
 
 //404 ROUTE
 app.get("*", (req, res) => {
