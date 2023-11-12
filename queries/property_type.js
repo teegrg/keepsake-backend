@@ -35,3 +35,16 @@ const createPropertyType = async (propertyType) => {
         return error;
     }
 };
+
+//DELETE
+const deletePropertyType = async (id) => {
+    try {
+      const deletedPropertyType = await db.one(
+        "DELETE FROM property_type_lookup WHERE id = $1 RETURNING *",
+        id
+      );
+      return deletedPropertyType;
+    } catch (error) {
+      return error;
+    }
+};
