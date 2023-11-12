@@ -1,13 +1,12 @@
 const express = require("express");
-const property_type = express.Router({mergeParams: true});
+const property_type = express.Router();
 
 const {getAllPropertyType} = require('../queries/property_type')
 
 
-// // SHOW
+//Index
 property_type.get("/", async (req, res) => {
-  const { listingId } = req.params;
-  const propertyType = await getAllPropertyType(listingId);
+  const propertyType = await getAllPropertyType();
   if (propertyType) {
     res.json(propertyType);
   }
