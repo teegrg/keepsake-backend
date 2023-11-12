@@ -48,3 +48,25 @@ const deletePropertyType = async (id) => {
       return error;
     }
 };
+
+
+//UPDATE
+const updatePropertyType = async (id, PropertyType) => {
+    try {
+      const updatedPropertyType = await db.one(
+        "UPDATE property_type_lookup SET property_type=$1  where id=$2 RETURNING *",
+        [PropertyType.property_type, id]
+      );
+      return updatedPropertyType;
+    }catch(error) {
+      return error;
+    }
+  };
+  
+  module.exports = {
+    getAllPropertyType,
+    getOnePropertyType,
+    createPropertyType,
+    deletePropertyType,
+    updatePropertyType,
+  };
