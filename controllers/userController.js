@@ -1,18 +1,17 @@
 const express = require("express");
 const users = express.Router();
 
-// Reviews ROUTES
-const user_reviewController = require("./user_reviewController");
-users.use("/:userId/reviews", user_reviewController);
+const {validationMiddleware} = require('../middlewares/validations-middle')
+const {userAuth} = require('../middlewares/password-middle')
 
 const {
   checkFirstName,
   checkLastName,
   checkAddress,
-  checkEmail,
   checkPhone,
-  checkPassword,
-  checkBoolean
+  checkBoolean,
+  registerValidation,
+  loginValidation
 } = require("../validations/checkUsers");
 
 const {
@@ -21,8 +20,22 @@ const {
   createUser,
   deleteUser,
   updateUser,
-  collectListings
+  collectListings,
+  register,
+  login,
+  protected,
+  logout
 } = require("../queries/users");
+
+// Reviews ROUTES
+const user_reviewController = require("./user_reviewController");
+users.use("/:userId/reviews", user_reviewController);
+
+users.post('/register', registerValidation, validationMiddleware, register)
+users.post('/login', loginValidation, validationMiddleware, login )
+users.get('/protected', userAuth, protected)
+users.get('/logout', logout)
+
 
 // INDEX
 users.get("/", async (req, res) => {
@@ -47,16 +60,16 @@ users.get("/:id", async (req, res) => {
   }
 });
 
-// CREATE
-users.post("/", checkFirstName, checkLastName, checkAddress, checkEmail, checkPhone, checkPassword, checkBoolean, async (req, res) => {
-  try {
-    const user = await createUser(req.body);
-    res.json(user);
-  }
-  catch (error) {
-    res.status(400).json({ error: error });
-  }
-});
+// // CREATE
+// users.post("/", checkFirstName, checkLastName, checkAddress, checkEmail, checkPhone, checkPassword, checkBoolean, async (req, res) => {
+//   try {
+//     const user = await createUser(req.body);
+//     res.json(user);
+//   }
+//   catch (error) {
+//     res.status(400).json({ error: error });
+//   }
+// });
 
 // DELETE
 users.delete("/:id", async (req, res) => {
@@ -70,12 +83,12 @@ users.delete("/:id", async (req, res) => {
   }
 });
 
-// UPDATE
-users.put("/:id", checkFirstName, checkLastName, checkAddress, checkEmail, checkPhone, checkPassword, checkBoolean, async (req, res) => {
-  const { id } = req.params;
-  const updatedUser = await updateUser(id, req.body);
-  res.status(200).json(updatedUser);
-});
+// // UPDATE
+// users.put("/:id", checkFirstName, checkLastName, checkAddress, checkEmail, checkPhone, checkPassword, checkBoolean, async (req, res) => {
+//   const { id } = req.params;
+//   const updatedUser = await updateUser(id, req.body);
+//   res.status(200).json(updatedUser);
+// });
 
 //COLLECT
 users.get('/:id/listings', async (req, res) =>{
