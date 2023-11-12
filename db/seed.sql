@@ -81,6 +81,19 @@ VALUES
 (10, ARRAY['2023-07-13'::DATE, '2023-07-29'::DATE], 1, 60);
 
 
+INSERT INTO property_type_lookup (property_type)
+VALUES
+('closet'),
+('safebox'),
+('parking lot'),
+('backyard'),
+('alleyway'),
+('closet'),
+('basement'),
+('alleyway'),
+('closet'),
+('garage');
+
 -- //run on terminal to run this files/ restart new
 -- //psql -U postgres -f db/schema.sql
 -- //psql -U postgres -f db/seed.sql
