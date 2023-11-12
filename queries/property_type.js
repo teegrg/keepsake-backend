@@ -21,3 +21,17 @@ try {
     return error;
 }
 };
+
+
+//CREATE NEW 
+const createPropertyType = async (propertyType) => {
+    try {
+        const newPropertType = await db.one(
+        "INSERT INTO property_type_lookup (property_type) VALUES($1) RETURNING *",
+        [propertyType.property_type]
+        );
+        return newPropertType;
+    } catch (error) {
+        return error;
+    }
+};
