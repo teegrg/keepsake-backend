@@ -3,19 +3,19 @@
 
 INSERT INTO users (firstName, lastName, address, email, phone, isVerified, password, created_at, role, image)
 VALUES
-('Jerry', 'Jazz', '1400 Pennsylvania', 'jerry@gmail.com', '646-007-0000', true, 'password123', '07/13/23', 'host', 'https://images.squarespace-cdn.com/content/v1/6091c3e4f5f6071721c43f77/1683711745725-O1R2JQOY9II73V828PYS/Midjourney+Headshot.jpg'),
+('Anita', 'Jazz', '1400 Pennsylvania', 'jerry@gmail.com', '646-007-0000', true, 'password123', '07/13/23', 'host', 'https://images.squarespace-cdn.com/content/v1/6091c3e4f5f6071721c43f77/1683711745725-O1R2JQOY9II73V828PYS/Midjourney+Headshot.jpg'),
 ('John', 'Doe', '789 Elm St', 'johnw@example.com', '555-123-4567', true, 'secure456', '07/15/23', 'renter', 'https://www.zdnet.com/a/img/resize/340751cf020716892a48de5bde0974eb2737031f/2023/07/17/f6c8e458-e4ee-4bba-8e98-4d17fd8fa11e/img-7506.jpg?auto=webp&width=740'),
-('Alice', 'Anderson', '123 Main St', 'alice@example.com', '555-123-4567', true, 'pass123', '07/14/23', 'host', 'https://ph-files.imgix.net/824107d2-4381-4a81-bff7-a569e1b37b72.png?auto=format&fit=crop'),
-('Emma', 'Smith', '456 Oak St', 'emma@example.com', '555-567-8901', true, 'secret789', '07/16/23', 'renter', 'https://samanthabrandon.com/wp-content/uploads/2023/04/sam-.png'),
+('Alice', 'Anderson', '123 Main St', 'alice@example.com', '555-123-4567', true, 'pass123', '07/14/23', 'host', 'https://c.vanceai.com/assets/images/common/introduce_23-2c356678ee.jpg'),
+('Emma', 'Smith', '456 Oak St', 'emma@example.com', '555-567-8901', true, 'secret789', '07/16/23', 'renter', 'https://static.generated.photos/vue-static/face-generator/landing/demo-previews/age.jpg'),
 ('Sarah', 'Williams', '567 Park Ave', 'sarah@example.com', '555-987-6543', true, 'rent567', '07/15/23', 'host', 'https://www.aragon.ai/_next/image?url=%2Fimages%2Fheadshots%2Fmelissa-output.png&w=640&q=80'),
-('Michael', 'Brown', '890 Pine Ave', 'michael@example.com', '555-789-1234', true, 'pine123', '07/18/23', 'renter', 'https://www.aragon.ai/_next/image?url=%2Fimages%2Fheadshots%2Fmelissa-output.png&w=640&q=80'),
+('Michael', 'Brown', '890 Pine Ave', 'michael@example.com', '555-789-1234', true, 'pine123', '07/18/23', 'renter', 'https://static.generated.photos/vue-static/face-generator/landing/wall/20.jpg'),
 ('Ryan', 'Johnson', '890 Sunset Blvd', 'ryan@example.com', '555-567-8901', true, 'sun123', '07/16/23', 'host', 'https://img.freepik.com/premium-photo/generative-ai-headshot-portrait-two-black-men-siblings-smiling_108985-1903.jpg'),
-('Olivia', 'Taylor', '123 Cedar Ln', 'olivia@example.com', '555-234-5678', true, 'cedar234', '07/19/23', 'renter', 'https://static.vecteezy.com/system/resources/previews/024/621/480/large_2x/beautiful-young-woman-exudes-confidence-in-illuminated-studio-headshot-generated-by-ai-free-photo.jpg'),
+('Olivia', 'Taylor', '123 Cedar Ln', 'olivia@example.com', '555-234-5678', true, 'cedar234', '07/19/23', 'renter', 'https://static.generated.photos/vue-static/face-generator/landing/wall/4.jpg'),
 ('Linda', 'Clark', '456 Lake Dr', 'linda@example.com', '555-456-7890', true, 'lake456', '07/17/23', 'host', 'https://media.licdn.com/dms/image/D4E12AQHmxS2KAqsDvw/article-inline_image-shrink_1000_1488/0/1680041957472?e=1704326400&v=beta&t=Pm0dnfYsMnsFlZ9ONqYoVvltBj0yWndwx-mkVBeTL5w'),
-('William', 'Harris', '234 Birch Rd', 'william@example.com', '555-345-6789', true, 'birch345', '07/20/23', 'renter', 'https://cdn.secta.ai/tmp/marko-headshot.jpeg'),
+('William', 'Harris', '234 Birch Rd', 'william@example.com', '555-345-6789', true, 'birch345', '07/20/23', 'renter', 'https://images.nightcafe.studio//assets/man-in-suit.jpg?tr=w-1600,c-at_max'),
 ('Ava', 'Martinez', '567 Maple Ln', 'ava@example.com', '555-123-4567', true, 'maple123', '07/24/23', 'host', 'https://images.squarespace-cdn.com/content/v1/55117645e4b0a2f3e886a6aa/1653509322812-YGXLQ3BR08NCJTTF9A6H/Portraits-031.jpg'),
 ('Henry', 'Garcia', '890 Cedar Dr', 'henry@example.com', '555-567-8901', true, 'cedar567', '07/25/23', 'host', 'https://www.schoolfablab.com/wp-content/uploads/2019/09/000016.jpg'),
-('Ella', 'Lopez', '567 Willow Ave', 'ella@example.com', '555-345-6789', true, 'willow345', '07/27/23', 'renter', 'https://www.aragon.ai/_next/image?url=%2Fimages%2Fheadshots%2Freagan-output.png&w=640&q=80'),
+('Ella', 'Lopez', '567 Willow Ave', 'ella@example.com', '555-345-6789', true, 'willow345', '07/27/23', 'renter', 'https://static.generated.photos/vue-static/face-generator/landing/demo-previews/makeup.jpg'),
 ('Linda', 'Clark', '456 Lake Dr', 'linda2@example.com', '555-456-7890', true, 'lake456', '07/17/23', 'host', 'https://static.vecteezy.com/system/resources/previews/024/621/480/large_2x/beautiful-young-woman-exudes-confidence-in-illuminated-studio-headshot-generated-by-ai-free-photo.jpg'),
 ('James', 'Wilson', '789 Oak Ave', 'james@example.com', '555-345-6789', true, 'oak789', '07/22/23', 'host', 'https://images.squarespace-cdn.com/content/v1/5ec689480cc22c2d441e152f/1597241102981-LPADHV8BTNNEZVL5TJ0Z/family-pet-photography-greenwich-ct-studio-photographer.jpg'),
 ('Benjamin', 'Gonzalez', '123 Spruce Rd', 'benjamin@example.com', '555-678-9012', true, 'spruce678', '07/28/23', 'renter', 'https://cdn.secta.ai/tmp/marko-headshot.jpeg'),
@@ -28,7 +28,7 @@ VALUES
 INSERT INTO listing (address, size, price, posted_at, type, host, renter, isRented, avg_rating, description, image)
 VALUES
   ('Storage Unit A', '4x4', 50, '2023-10-15', 'Storage', 1, 2, TRUE, 4,'It is big enough for suitcase’s and or clothes.', 'https://i1.wp.com/simplyalignedhome.com/wp-content/uploads/2020/02/Small-closet-with-wire-shelving-removed-scaled.jpg?fit=770%2C1024'),
-  ('Storage Unit B', '5x5', 75, '2023-10-20', 'Storage', 2, 3, FALSE, 3, 'Safe and secure small closet that can hold boxes and valuables', 'https://diplomatclosetdesign.com/wp-content/uploads/2021/12/Diplomat1107RockCreek-57-1-1024x683.jpg'),
+  ('Storage Unit B', '5x5', 75, '2023-10-20', 'Storage', 2, 3, FALSE, 3, 'Max safe and super secure safe box that can hold documents and valuables', 'https://static.wixstatic.com/media/ca2c56_6bb2e8d868154adc96923e469a9b8017~mv2.jpeg/v1/fill/w_640,h_896,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/ca2c56_6bb2e8d868154adc96923e469a9b8017~mv2.jpeg'),
   ('Storage Unit C', '10x10', 120, '2023-10-25', 'Storage', 3, 4, TRUE, 5,'This is a gated parking lot located outside of the building without cover. Please long term parking only.', 'https://2.bp.blogspot.com/-Uc9WayxakFg/Trgr8_mgryI/AAAAAAAADV4/58CbVYgRxGw/s1600/blog.jpg'),
   ('Storage Unit D', '10x20', 200, '2023-10-30', 'Storage', 4, 5, FALSE, 4,'Large open lot fits a truck or cars. This is safe and accessible neighborhood. This lot is secure and has an extra gate.', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRB3j6GzsGPqo9rCYCA-PipTv0zLBK_tNr9Ow&usqp=CAU'),
   ('Storage Unit E', '4x4', 50, '2023-10-15', 'Storage', 5, 6, TRUE, 4, 'For long term only, small space, weather proof.', 'https://live.staticflickr.com/8039/8060796754_b479c6c58d_b.jpg'),
@@ -80,6 +80,19 @@ VALUES
 (9, ARRAY['2023-07-13'::DATE, '2023-07-16'::DATE], 7, 60),
 (10, ARRAY['2023-07-13'::DATE, '2023-07-29'::DATE], 1, 60);
 
+
+INSERT INTO property_type_lookup (property_type)
+VALUES
+('closet'),
+('safebox'),
+('parking lot'),
+('backyard'),
+('alleyway'),
+('closet'),
+('basement'),
+('alleyway'),
+('closet'),
+('garage');
 
 -- //run on terminal to run this files/ restart new
 -- //psql -U postgres -f db/schema.sql

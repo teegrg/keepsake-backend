@@ -16,7 +16,7 @@ CREATE TABLE users (
   password varchar(255) NOT NULL,
   created_at date DEFAULT current_date,
   role TEXT,
-  image TEXT,
+  image TEXT
 );
 
 DROP TABLE IF EXISTS listing;
@@ -33,7 +33,7 @@ CREATE TABLE listing (
   isRented boolean,
   avg_rating INTEGER,
   description TEXT,
-  image TEXT,
+  image TEXT
 );
 
 DROP TABLE IF EXISTS user_reviews;
@@ -67,3 +67,10 @@ CREATE TABLE availability (
   min_days INTEGER NOT NULL,
   max_days INTEGER NOT NULL
 );
+
+DROP TABLE IF EXISTS property_type_lookup;
+
+CREATE TABLE property_type_lookup (
+  id SERIAL PRIMARY KEY,
+  property_type TEXT
+)
