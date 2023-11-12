@@ -67,3 +67,10 @@ CREATE TABLE availability (
   min_days INTEGER NOT NULL,
   max_days INTEGER NOT NULL
 );
+
+DROP TABLE IF EXISTS property_type_lookup;
+
+CREATE TABLE property_type_lookup (
+  id SERIAL PRIMARY KEY,
+  property_type TEXT
+)
