@@ -23,7 +23,11 @@ DROP TABLE IF EXISTS listing;
 
 CREATE TABLE listing (
   listing_id SERIAL PRIMARY KEY,
-  address TEXT NOT NULL,
+  street TEXT NOT NULL,
+  apt TEXT,
+  city TEXT NOT NULL,
+  state TEXT NOT NULL,
+  zip TEXT NOT NULL,
   size TEXT NOT NULL,
   price INTEGER,
   posted_at date,
@@ -73,4 +77,4 @@ DROP TABLE IF EXISTS property_type_lookup;
 CREATE TABLE property_type_lookup (
   id SERIAL PRIMARY KEY,
   property_type TEXT
-)
+);
