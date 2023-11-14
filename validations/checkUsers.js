@@ -7,12 +7,12 @@ const { compare } = require('bcryptjs')
 const email = check('email').isEmail().withMessage('Please provide a valid email.')
 
 
-const emailExists = check('email').custom(async (value) =>{
-  const {results} = await db.query('SELECT * from users WHERE email = $1' , [value,
+const emailExists = check('email').custom(async (value)  =>{
+  const result = await db.query('SELECT * from users WHERE email = $1', [value,
   ])
 
-  if (results && results.length){
-    throw new Error('Email already exists.')
+  if (result.length){
+      throw new Error('Email is taken')
   }
 })
 
