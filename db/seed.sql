@@ -94,6 +94,11 @@ VALUES
 ('closet'),
 ('garage');
 
+INSERT INTO blackoutDates (listing_id, start_date, end_date) VALUES
+  (1, '2023-11-15', '2023-11-20'),
+  (2, '2023-12-01', '2023-12-05'),
+  (3, '2023-11-25', '2023-11-27');
+
 -- //run on terminal to run this files/ restart new
 -- //psql -U postgres -f db/schema.sql
 -- //psql -U postgres -f db/seed.sql

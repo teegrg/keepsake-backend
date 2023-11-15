@@ -73,4 +73,13 @@ DROP TABLE IF EXISTS property_type_lookup;
 CREATE TABLE property_type_lookup (
   id SERIAL PRIMARY KEY,
   property_type TEXT
+);
+
+DROP TABLE IF EXISTS blackoutDates;
+
+CREATE TABLE blackoutDates (
+  id SERIAL PRIMARY KEY,
+  listing_id INTEGER REFERENCES listing (listing_id),
+  start_date date,
+  end_date date
 )
