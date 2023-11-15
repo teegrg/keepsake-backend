@@ -26,6 +26,10 @@ listings.use("/:listingId/reviews", listing_reviewController);
 const availability = require("./availabilityController.js");
 listings.use("/:listingId/availability", availability);
 
+//BLACKOUT CONTROLLER
+const blackout = require('./blackoutDatesController.js');
+listings.use('/:listingId/blackout', blackout)
+
 // INDEX
 listings.get("/", async (req, res) => {
   const allItems = await getAllListings();
