@@ -1,6 +1,5 @@
 const express = require("express");
 const listings = express.Router();
-const { checkAddress, checkSize, checkBoolean } = require("../validations/checkListings");
 const {
   getAllListings,
   getListing,
@@ -8,6 +7,15 @@ const {
   deleteListing,
   updateListing
 } = require("../queries/listings");
+
+const {
+  checkStreet,
+  checkCity,
+  checkState,
+  checkZip,
+  checkSize,
+  checkBoolean
+} = require("../validations/checkListings");
 
 
 //LISTING REVIEW CONTROLLER
@@ -46,7 +54,7 @@ listings.get("/:id", async (req, res) => {
 });
 
 // CREATE
-listings.post("/", checkAddress, checkSize, checkBoolean, async (req, res) => {
+listings.post("/", checkStreet, checkCity, checkState, checkZip, checkSize, checkBoolean, async (req, res) => {
   try {
     const item = await createListing(req.body);
     res.json(item);
@@ -69,7 +77,7 @@ listings.delete("/:id", async (req, res) => {
 });
 
 // UPDATE
-listings.put("/:id", checkAddress, checkSize, checkBoolean, async (req, res) => {
+listings.put("/:id", checkStreet, checkCity, checkState, checkZip, checkSize, checkBoolean, async (req, res) => {
   const { id } = req.params;
   const updatedItem = await updateListing(id, req.body);
   res.status(200).json(updatedItem);
