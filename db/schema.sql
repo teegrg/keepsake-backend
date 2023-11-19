@@ -30,7 +30,7 @@ CREATE TABLE listing (
   zip TEXT NOT NULL,
   size TEXT NOT NULL,
   price INTEGER,
-  posted_at date,
+  posted_at date DEFAULT CURRENT_DATE,
   type TEXT,
   host INTEGER REFERENCES users (user_id),
   renter INTEGER REFERENCES users (user_id),
