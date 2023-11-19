@@ -25,8 +25,8 @@ const getAllListings = async () => {
 const createListing = async (listing) => {
   try {
     const newListing = await db.one(
-      "INSERT INTO listing (street, apt, city, state, zip, size, price, posted_at, type, host, renter, isRented, avg_rating) VALUES($1, $2, $3, $4) RETURNING *",
-      [listing.street, listing.apt, listing.city, listing.state, listing.zip, listing.size, listing.price, listing.posted_at, listing.type, listing.host, listing.renter, listing.isRented, listing.avg_rating]
+      "INSERT INTO listing (street, apt, city, state, zip, size, price, posted_at, type, host, isRented, avg_rating, description) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING *",
+      [listing.street, listing.apt, listing.city, listing.state, listing.zip, listing.size, listing.price, listing.posted_at, listing.type, listing.host, listing.isRented, listing.avg_rating, listing.description]
     );
     return newListing;
   } catch (error) {
