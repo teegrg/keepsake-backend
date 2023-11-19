@@ -67,9 +67,12 @@ DROP TABLE IF EXISTS availability;
 CREATE TABLE availability (
   id SERIAL PRIMARY KEY,
   listing_id INTEGER REFERENCES listing (listing_id),
-  days_not_available DATE[],
   min_days INTEGER NOT NULL,
-  max_days INTEGER NOT NULL
+  max_days INTEGER NOT NULL,
+  after_hours BOOLEAN,
+  appointment_needed BOOLEAN,
+  anytime BOOLEAN,
+  private BOOLEAN
 );
 
 DROP TABLE IF EXISTS property_type_lookup;
