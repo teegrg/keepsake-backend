@@ -67,18 +67,18 @@ VALUES
 (9, 10, 'Amazing Storage', 'A great storage experience overall. Highly recommend.', 5);
 
 
-INSERT INTO availability (listing_id, days_not_available, min_days, max_days)
+INSERT INTO availability (listing_id, min_days, max_days, after_hours, appointment_needed, anytime, private)
 VALUES
-(1, ARRAY['2023-07-13'::DATE, '2023-07-17'::DATE], 7, 60),
-(2, ARRAY['2023-07-13'::DATE, '2023-07-19'::DATE], 2, 30),
-(3, ARRAY['2023-07-13'::DATE, '2023-07-17'::DATE], 1, 90),
-(4, ARRAY['2023-07-13'::DATE, '2023-07-18'::DATE], 6, 2023),
-(5, ARRAY['2023-07-13'::DATE, '2023-08-21'::DATE], 14, 31),
-(6, ARRAY['2023-07-13'::DATE, '2023-07-28'::DATE], 3, 60),
-(7, ARRAY['2023-07-13'::DATE, '2023-07-30'::DATE], 1, 30),
-(8, ARRAY['2023-07-13'::DATE, '2023-08-13'::DATE], 4, 90),
-(9, ARRAY['2023-07-13'::DATE, '2023-07-16'::DATE], 7, 60),
-(10, ARRAY['2023-07-13'::DATE, '2023-07-29'::DATE], 1, 60);
+  (1, 2, 7, TRUE, FALSE, TRUE, FALSE),
+  (2, 3, 10, FALSE, TRUE, FALSE, FALSE),
+  (3, 1, 5, TRUE, TRUE, TRUE, FALSE),
+  (4, 2, 14, FALSE, FALSE, FALSE, TRUE),
+  (5, 1, 30, FALSE, FALSE, TRUE, TRUE),
+  (6, 4, 10, TRUE, TRUE, FALSE, TRUE),
+  (7, 2, 5, FALSE, FALSE, TRUE, FALSE),
+  (8, 1, 3, TRUE, TRUE, TRUE, TRUE),
+  (9, 3, 7, FALSE, TRUE, FALSE, FALSE),
+  (10, 2, 14, TRUE, FALSE, TRUE, TRUE);
 
 
 INSERT INTO property_type_lookup (property_type)
