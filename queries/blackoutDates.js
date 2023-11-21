@@ -12,6 +12,17 @@ const getBlackOut = async (id) => {
     }
 };
 
+// GET A SINGLE BLACKOUT DATE BY ID
+const getBlackOutById = async (blackoutId, listingId) => {
+  try {
+    const singleBlackoutDate = await db.oneOrNone("SELECT * FROM blackoutDates WHERE id = $1 AND listing_id = $2", [blackoutId, listingId]);
+    return singleBlackoutDate;
+  } catch (error) {
+    console.error("Error in getBlackOutById query:", error.message || error);
+    throw error;
+  }
+};
+
 //ADD BLACKOUT DATES
 const createBlackoutDate = async (blackoutDate) => {
     try {
@@ -56,7 +67,8 @@ module.exports = {
     getBlackOut,
     createBlackoutDate,
     deleteBlackout,
-    updateBlackoutDate
+    updateBlackoutDate,
+    getBlackOutById
   };
 
   
