@@ -1,7 +1,7 @@
 const express = require("express");
 const blackout = express.Router({mergeParams: true});
 
-const {getBlackOut, createBlackoutDate, deleteBlackout, updateBlackoutDate} = require('../queries/blackoutDates.js')
+const {getBlackOut, createBlackoutDate, deleteBlackout, updateBlackoutDate, getBlackOutById} = require('../queries/blackoutDates.js')
 
 
 //SHOW
@@ -16,6 +16,26 @@ blackout.get("/", async (req, res) => {
     }
   });
 
+//SHOW SINGLE
+blackout.get("/:blackoutId", async (req, res) => {
+  try {
+    const { blackoutId } = req.params;
+    const { listingId } = req.params; // assuming you're retrieving listingId from your route
+
+    const singleBlackoutDate = await getBlackOutById(blackoutId, listingId);
+
+    if (singleBlackoutDate) {
+      res.status(200).json(singleBlackoutDate);
+    } else {
+      res.status(404).json({ error: "Blackout date for this listing not found" });
+    }
+  } catch (error) {
+    res.status(500).json({ error: "Failed to fetch blackout date", details: error.message || error });
+  }
+});
+  
+  module.exports = blackout;
+
 
 //CREATE
 blackout.post('/', async (req, res) => {
@@ -29,6 +49,7 @@ try {
     res.status(400).json({ error: "Failed to create blackout date", details: error.message || error });
 }
 });
+
 
 //DELETE
 blackout.delete("/:id", async (req, res) => {
