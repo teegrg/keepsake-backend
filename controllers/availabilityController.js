@@ -3,9 +3,6 @@ const availability = express.Router({mergeParams: true});
 
 const {getAvailability} = require('../queries/availability')
 
-//BLACKOUT CONTROLLER
-const blackout = require('./blackoutDatesController.js');
-availability.use('/blackout', blackout)
 
 // // SHOW
 availability.get("/", async (req, res) => {

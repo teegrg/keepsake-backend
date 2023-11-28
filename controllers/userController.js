@@ -27,6 +27,9 @@ const {
   logout
 } = require("../queries/users");
 
+const { getUserBookings } = require("../queries/booked")
+
+
 // Reviews ROUTES
 const user_reviewController = require("./user_reviewController");
 users.use("/:userId/reviews", user_reviewController);
@@ -101,5 +104,22 @@ users.get('/:id/listings', async (req, res) =>{
     res.status(404).json({error:"not found"})
   }
 })
+
+
+//GETS ALL BOOKING INFO
+users.get("/:userId/bookings", async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const userBookings = await getUserBookings(userId);
+    
+    if (userBookings.length > 0) {
+      res.status(200).json(userBookings);
+    } else {
+      res.status(404).json({ message: "No bookings found for this user" });
+    }
+  } catch (error) {
+    res.status(500).json({ error: "Failed to fetch bookings", details: error.message || error });
+  }
+});
 
 module.exports = users;

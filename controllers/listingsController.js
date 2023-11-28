@@ -17,6 +17,9 @@ const {
   checkBoolean
 } = require("../validations/checkListings");
 
+const { getBookings } = require("../queries/booked.js")
+const {getBlackOutByListingId} = require('../queries/blackoutDates.js')
+
 
 //LISTING REVIEW CONTROLLER
 const listing_reviewController = require("./listing_reviewController.js");
@@ -26,9 +29,6 @@ listings.use("/:listingId/reviews", listing_reviewController);
 const availability = require("./availabilityController.js");
 listings.use("/:listingId/availability", availability);
 
-//BLACKOUT CONTROLLER
-const blackout = require('./blackoutDatesController.js');
-listings.use('/:listingId/blackout', blackout)
 
 // INDEX
 listings.get("/", async (req, res) => {
@@ -82,5 +82,40 @@ listings.put("/:id", checkStreet, checkCity, checkState, checkZip, checkSize, ch
   const updatedItem = await updateListing(id, req.body);
   res.status(200).json(updatedItem);
 });
+
+
+
+//GET BLACK OUT DATES FOR LISTING
+listings.get("/:listingId/blackout", async (req, res) => {
+  try {
+    const { listingId } = req.params;
+    const blackoutDates = await getBlackOutByListingId(listingId);
+
+    if (blackoutDates && blackoutDates.length > 0) {
+      res.status(200).json(blackoutDates);
+    } else {
+      res.status(404).json({ error: "Blackout dates not found for this listing" });
+    }
+  } catch (error) {
+    res.status(500).json({ error: "Failed to fetch blackout dates", details: error.message || error });
+  }
+});
+
+//GET BOOKING INFO FROM LISTING
+listings.get("/:listingId/bookings", async (req, res) => {
+  try {
+    const { listingId } = req.params;
+    const bookings = await getBookings(listingId);
+
+    if (bookings) {
+      res.status(200).json(bookings);
+    } else {
+      res.status(404).json({ error: "Bookings not found for this listing" });
+    }
+  } catch (error) {
+    res.status(500).json({ error: "Failed to fetch bookings", details: error.message || error });
+  }
+});
+
 
 module.exports = listings;

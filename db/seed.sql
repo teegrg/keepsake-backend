@@ -67,18 +67,18 @@ VALUES
 (9, 10, 'Amazing Storage', 'A great storage experience overall. Highly recommend.', 5);
 
 
-INSERT INTO availability (listing_id, min_days, max_days, after_hours, appointment_needed, anytime, private)
+INSERT INTO availability (listing_id, min_days, max_days, after_hours, appointment_needed, private)
 VALUES
-  (1, 2, 7, TRUE, FALSE, TRUE, FALSE),
-  (2, 3, 10, FALSE, TRUE, FALSE, FALSE),
-  (3, 1, 5, TRUE, TRUE, TRUE, FALSE),
-  (4, 2, 14, FALSE, FALSE, FALSE, TRUE),
-  (5, 1, 30, FALSE, FALSE, TRUE, TRUE),
-  (6, 4, 10, TRUE, TRUE, FALSE, TRUE),
-  (7, 2, 5, FALSE, FALSE, TRUE, FALSE),
-  (8, 1, 3, TRUE, TRUE, TRUE, TRUE),
-  (9, 3, 7, FALSE, TRUE, FALSE, FALSE),
-  (10, 2, 14, TRUE, FALSE, TRUE, TRUE);
+  (1, 2, 7, TRUE, FALSE, FALSE),
+  (2, 3, 10, FALSE, TRUE, FALSE),
+  (3, 1, 5, TRUE, TRUE, FALSE),
+  (4, 2, 14, FALSE, FALSE, TRUE),
+  (5, 1, 30, FALSE, FALSE, TRUE),
+  (6, 4, 10, TRUE, TRUE, TRUE),
+  (7, 2, 5, FALSE, FALSE, FALSE),
+  (8, 1, 3, TRUE, TRUE, TRUE),
+  (9, 3, 7, FALSE, TRUE, FALSE),
+  (10, 2, 14, TRUE, FALSE, TRUE);
 
 
 INSERT INTO property_type_lookup (property_type)
@@ -95,9 +95,23 @@ VALUES
 ('garage');
 
 INSERT INTO blackoutDates (listing_id, start_date, end_date) VALUES
-  (1, '2023-11-15', '2023-11-20'),
-  (2, '2023-12-01', '2023-12-05'),
-  (3, '2023-11-25', '2023-11-27');
+(1, '2023-11-15', '2023-11-20'),
+(2, '2023-12-01', '2023-12-05'),
+(3, '2023-11-25', '2023-11-27');
+
+INSERT INTO booked (user_id, listing_id, blackoutdate_id, total, status, request)
+VALUES
+(2, 1, 1, 75.00, 'confirmed', 'Need access on specific hours'),
+(3, 2, 2, 120.00, 'pending', 'Require appointment before access'),
+(4, 3, 3, 150.00, 'confirmed', 'Long-term storage needed'),
+(5, 4, NULL, 100.00, 'confirmed', 'Short-term parking requirement'),
+(6, 5, NULL, 50.00, 'cancelled', 'Change of plans'),
+(7, 6, NULL, 75.00, 'confirmed', 'Require access on weekends'),
+(8, 7, NULL, 90.00, 'pending', 'Interested in long-term rental'),
+(9, 8, NULL, 30.00, 'confirmed', 'Short-term storage needed'),
+(10, 9, NULL, 80.00, 'pending', 'Appointment for inspection'),
+(11, 10, NULL, 200.00, 'confirmed', 'Long-term parking required');
+
 
 -- //run on terminal to run this files/ restart new
 -- //psql -U postgres -f db/schema.sql

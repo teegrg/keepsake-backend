@@ -1,75 +1,92 @@
 const express = require("express");
 const blackout = express.Router({mergeParams: true});
 
-const {getBlackOut, createBlackoutDate, deleteBlackout, updateBlackoutDate, getBlackOutById} = require('../queries/blackoutDates.js')
+const {getAllBlackoutDates, getBlackoutDateById, createBlackoutDate, deleteBlackout, updateBlackoutDate} = require('../queries/blackoutDates.js')
 
 
 //SHOW
 blackout.get("/", async (req, res) => {
-    const { listingId } = req.params;
-    const availability = await getBlackOut(listingId);
-    if (availability) {
-      res.json(availability);
+  try {
+    const blackout = await getAllBlackoutDates();
+
+    if (blackout && blackout.length > 0) {
+      res.status(200).json(blackout);
+    } else {
+      res.status(404).json({ error: "No blackout found" });
     }
-    else {
-      res.status(404).json({ error: "not found" });
-    }
-  });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to fetch blackout", details: error.message || error });
+  }
+});
 
 //SHOW SINGLE
 blackout.get("/:blackoutId", async (req, res) => {
   try {
     const { blackoutId } = req.params;
-    const { listingId } = req.params; // assuming you're retrieving listingId from your route
 
-    const singleBlackoutDate = await getBlackOutById(blackoutId, listingId);
+    const blackoutDate = await getBlackoutDateById(blackoutId);
 
-    if (singleBlackoutDate) {
-      res.status(200).json(singleBlackoutDate);
+    if (blackoutDate) {
+      res.status(200).json(blackoutDate);
     } else {
-      res.status(404).json({ error: "Blackout date for this listing not found" });
+      res.status(404).json({ error: "Blackout date not found" });
     }
   } catch (error) {
     res.status(500).json({ error: "Failed to fetch blackout date", details: error.message || error });
   }
 });
-  
-  module.exports = blackout;
+
 
 
 //CREATE
 blackout.post('/', async (req, res) => {
-try {
-    const listingId = req.params.listingId;
+  try {
+    const { listingId } = req.params;
     const blackoutDateData = { ...req.body, listing_id: listingId }; 
 
     const newBlackoutDate = await createBlackoutDate(blackoutDateData);
-    res.json(newBlackoutDate);
-} catch (error) {
+    res.status(201).json(newBlackoutDate);
+  } catch (error) {
     res.status(400).json({ error: "Failed to create blackout date", details: error.message || error });
-}
+  }
 });
 
 
+
 //DELETE
-blackout.delete("/:id", async (req, res) => {
-    const { id } = req.params;
-    const deletedBlackout = await deleteBlackout(id);
-    if (deletedBlackout.id) {
+blackout.delete("/:blackoutId", async (req, res) => {
+  try {
+    const { blackoutId } = req.params;
+    const deletedBlackout = await deleteBlackout(blackoutId);
+    
+    if (deletedBlackout) {
       res.status(200).json(deletedBlackout);
+    } else {
+      res.status(404).json({ error: "Blackout date not found!" });
     }
-    else {
-      res.status(404).json("Song not found!");
-    }
-  });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to delete blackout date", details: error.message || error });
+  }
+});
+
 
 
 // UPDATE
-blackout.put("/:id", async (req, res) => {
-    const { id } = req.params;
-    const updated = await updateBlackoutDate(id, req.body);
-    res.status(200).json(updated);
-});  
+blackout.put("/:blackoutId", async (req, res) => {
+  try {
+    const { blackoutId } = req.params;
+    const updatedBlackout = await updateBlackoutDate(blackoutId, req.body);
+    
+    if (updatedBlackout) {
+      res.status(200).json(updatedBlackout);
+    } else {
+      res.status(404).json({ error: "Blackout date not found!" });
+    }
+  } catch (error) {
+    res.status(500).json({ error: "Failed to update blackout date", details: error.message || error });
+  }
+});
+
 
 
 module.exports = blackout;

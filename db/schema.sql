@@ -71,7 +71,6 @@ CREATE TABLE availability (
   max_days INTEGER NOT NULL,
   after_hours BOOLEAN,
   appointment_needed BOOLEAN,
-  anytime BOOLEAN,
   private BOOLEAN
 );
 
@@ -89,5 +88,16 @@ CREATE TABLE blackoutDates (
   listing_id INTEGER REFERENCES listing (listing_id),
   start_date date,
   end_date date
-)
+);
 
+DROP TABLE IF EXISTS booked;
+
+CREATE TABLE booked (
+  id SERIAL PRIMARY KEY,
+  user_id INTEGER REFERENCES users (user_id),
+  listing_id INTEGER REFERENCES listing (listing_id),
+  blackoutdate_id INTEGER REFERENCES blackoutDates (id),
+  total DECIMAL,
+  status TEXT,
+  request TEXT
+);
