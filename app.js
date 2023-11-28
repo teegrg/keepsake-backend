@@ -27,6 +27,15 @@ app.use("/users", users);
 const listings = require("./controllers/listingsController");
 app.use("/listings", listings);
 
+//BLACKOUT CONTROLLER
+const blackout = require('./controllers/blackoutDatesController.js');
+app.use('/blackout', blackout)
+
+//BLACKOUT CONTROLLER
+const booked = require('./controllers/bookedContoller.js');
+app.use('/bookings', booked)
+
+
 
 // Reviews ROUTES
 const user_reviewController = require("./controllers/user_reviewController.js");
