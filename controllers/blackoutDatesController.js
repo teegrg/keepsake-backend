@@ -41,8 +41,7 @@ blackout.get("/:blackoutId", async (req, res) => {
 //CREATE
 blackout.post('/', async (req, res) => {
   try {
-    const { listingId } = req.params;
-    const blackoutDateData = { ...req.body, listing_id: listingId }; 
+    const blackoutDateData = { ...req.body };
 
     const newBlackoutDate = await createBlackoutDate(blackoutDateData);
     res.status(201).json(newBlackoutDate);
@@ -50,6 +49,7 @@ blackout.post('/', async (req, res) => {
     res.status(400).json({ error: "Failed to create blackout date", details: error.message || error });
   }
 });
+
 
 
 

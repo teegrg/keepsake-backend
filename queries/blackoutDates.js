@@ -22,18 +22,22 @@ const getBlackoutDateById = async (blackoutId) => {
 
 
 // CREATE - Add blackout dates
-const createBlackoutDate = async (listingId, blackoutDate) => {
+const createBlackoutDate = async (blackoutDate) => {
   try {
+    const { listing_id,start_date, end_date } = blackoutDate;
+
     const newBlackoutDate = await db.one(
       "INSERT INTO blackoutDates (listing_id, start_date, end_date) VALUES($1, $2, $3) RETURNING *",
-      [listingId, blackoutDate.start_date, blackoutDate.end_date]
+      [listing_id,start_date, end_date]
     );
+    
     return newBlackoutDate;
   } catch (error) {
     console.error("Error in createBlackoutDate query:", error.message || error);
     throw error;
   }
 };
+
 
 // DELETE - Remove blackout date by ID
 const deleteBlackout = async (blackoutId) => {
