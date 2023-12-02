@@ -1,7 +1,7 @@
 const express = require("express");
 const blackout = express.Router({mergeParams: true});
 
-const {getAllBlackoutDates, getBlackoutDateById, createBlackoutDate, deleteBlackout, updateBlackoutDate} = require('../queries/blackoutDates.js')
+const {getAllBlackoutDates, getBlackoutDateById, createBlackoutDate, deleteBlackout, updateBlackoutDate, getBlackoutDatesForListing} = require('../queries/blackoutDates.js')
 
 
 //SHOW
@@ -89,4 +89,14 @@ blackout.put("/:blackoutId", async (req, res) => {
 
 
 
+blackout.get("/listing/:listingId", async (req, res) => {
+  const { listingId } = req.params;
+
+  try {
+    const blackoutDates = await getBlackoutDatesForListing(listingId);
+    res.status(200).json({ blackoutDates });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
 module.exports = blackout;
