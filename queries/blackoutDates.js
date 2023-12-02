@@ -90,6 +90,52 @@ try {
 }
 };
 
+//EXTRACTING BLACKOUT DATES ID FROM BOOKING TABLE THEN RETURN AN OBJECT OF BLACKOUT DATES
+const getBlackoutDates = async (listingId) => {
+  try {
+    const bookings = await db.manyOrNone(
+      `SELECT blackoutdate_id FROM booked 
+       WHERE listing_id = $1 AND (status = 'pending' OR status = 'confirmed')`,
+      [listingId]
+    );
+
+    // Extract blackoutdate_ids from bookings
+    const blackoutdateIds = bookings.map((booking) => booking.blackoutdate_id);
+
+    return blackoutdateIds;
+  } catch (error) {
+    console.error("Error fetching blackout dates:", error.message || error);
+    throw error;
+  }
+};
+
+// Function to get all blackout dates (start_date and end_date) from blackoutDates table
+const getBlackoutDatesInfo = async (blackoutdateIds) => {
+  try {
+    const blackoutDates = await db.manyOrNone(
+      `SELECT start_date, end_date FROM blackoutDates WHERE id = ANY($1)`,
+      [blackoutdateIds]
+    );
+
+    return blackoutDates;
+  } catch (error) {
+    console.error("Error fetching blackout dates info:", error.message || error);
+    throw error;
+  }
+};
+
+// Combined function to retrieve blackout dates for a specific listing
+const getBlackoutDatesForListing = async (listingId) => {
+  try {
+    const blackoutdateIds = await getBlackoutDates(listingId);
+    const blackoutDatesInfo = await getBlackoutDatesInfo(blackoutdateIds);
+
+    return blackoutDatesInfo;
+  } catch (error) {
+    console.error("Error retrieving blackout dates for the listing:", error.message || error);
+    throw error;
+  }
+};
 
 
 module.exports = {
@@ -99,7 +145,8 @@ module.exports = {
     createBlackoutDate,
     deleteBlackout,
     updateBlackoutDate,
-    getBlackOutById
+    getBlackOutById,
+    getBlackoutDatesForListing
   };
 
   
