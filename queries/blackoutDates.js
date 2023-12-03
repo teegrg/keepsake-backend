@@ -119,7 +119,8 @@ const getBlackoutDatesInfo = async (blackoutdateIds) => {
 
     return blackoutDates;
   } catch (error) {
-    console.error("Error fetching blackout dates info:", error.message || error);
+  // WILL PRINT OUT ERRORS FOR LISTINGS WITH NO BLACKOUT DATES
+    // console.error("Error fetching blackout dates info:", error.message || error);
     throw error;
   }
 };
@@ -132,7 +133,8 @@ const getBlackoutDatesForListing = async (listingId) => {
 
     return blackoutDatesInfo;
   } catch (error) {
-    console.error("Error retrieving blackout dates for the listing:", error.message || error);
+  // WILL PRINT OUT ERRORS FOR LISTINGS WITH NO BLACKOUT DATES
+    // console.error("Error retrieving blackout dates for the listing:", error.message || error);
     throw error;
   }
 };
