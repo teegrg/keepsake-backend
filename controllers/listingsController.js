@@ -5,7 +5,8 @@ const {
   getListing,
   createListing,
   deleteListing,
-  updateListing
+  updateListing,
+  getSearchByAsc
 } = require("../queries/listings");
 
 const {
@@ -29,6 +30,17 @@ listings.use("/:listingId/reviews", listing_reviewController);
 const availability = require("./availabilityController.js");
 listings.use("/:listingId/availability", availability);
 
+// SEARCH
+listings.get("/search", async (req, res) => {
+  try {
+    const { query } = req.query;
+
+    const searchResults = await getSearchByAsc(query);
+    res.status(200).json(searchResults);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to perform search", details: error.message || error });
+  }
+});
 
 // INDEX
 listings.get("/", async (req, res) => {
