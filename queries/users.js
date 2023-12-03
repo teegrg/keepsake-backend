@@ -75,7 +75,7 @@ const logout = async (req, res) => {
 //ALL USERS
 const getAllUsers = async () => {
   try {
-    const allUsers = await db.any("SELECT user_id, firstName, lastName, email, phone, isVerified, created_at, role FROM users");
+    const allUsers = await db.any("SELECT user_id, firstName, lastName, email, phone, isVerified, created_at, role, image FROM users");
     return allUsers;
   } catch (error) {
     return error;

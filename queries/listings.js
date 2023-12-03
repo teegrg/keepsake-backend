@@ -1,5 +1,25 @@
 const db = require("../db/dbConfig.js");
 
+
+//GET ZIP ASCENDING ORDER
+const getSearchByAsc = async (searchZip) => {
+  try {
+    // searched ZIP code
+    const listingsWithSearchedZip = await db.any("SELECT * FROM listing WHERE zip = $1", searchZip);
+
+    // Listings with other ZIP codes in ascending order relative to the searched ZIP code
+    const listingsWithOtherZips = await db.any("SELECT * FROM listing WHERE zip <> $1 ORDER BY ABS(zip::integer - $1::integer), zip ASC", searchZip);
+
+    // Combine the two result sets
+    const allListings = listingsWithSearchedZip.concat(listingsWithOtherZips);
+
+    return allListings;
+  } catch (error) {
+    return error;
+  }
+};
+
+
 //ALL LISTINGS
 const getAllListings = async () => {
     try {
@@ -65,4 +85,5 @@ module.exports = {
   createListing,
   deleteListing,
   updateListing,
+  getSearchByAsc
 };
