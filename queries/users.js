@@ -28,7 +28,6 @@ const login = async(req,res) =>{
   let user = req.user
   let payload = {
     id: user.user_id,
-    email: user.email,
   }
   
   try{
@@ -36,8 +35,6 @@ const login = async(req,res) =>{
     return res.status(200).cookie('token',token,{httpOnly: true}).json({
       succcess: true,
       message: "Logged in Successfully!",
-      id: user.user_id,
-      email: user.email,
     })
   }catch(error){
     return res.status(500).json({
@@ -48,14 +45,16 @@ const login = async(req,res) =>{
 
 //VIEW PRIVATE INFO
 const protected = async (req, res) => {
-  try{
+  try {
     return res.status(200).json({
-      info:"protected",
-    })
-  }catch(error){
-    console.log(error.message)
+      info: "protected",
+      user: req.user
+    });
+  } catch (error) {
+    console.log(error.message);
+    return res.status(500).json({ error: error.message });
   }
-}
+};
 
 //LOGOUT
 const logout = async (req, res) => {

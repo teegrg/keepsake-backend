@@ -122,4 +122,5 @@ users.get("/:userId/bookings", async (req, res) => {
   }
 });
 
+
 module.exports = users;
