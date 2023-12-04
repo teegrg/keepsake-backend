@@ -1,7 +1,7 @@
 const { hash } = require("bcryptjs");
 const db = require("../db/dbConfig.js");
 const {sign} = require('jsonwebtoken');
-const { SECRET } = require("../constants/index.js");
+const { SECRET, CLIENT_URL } = require("../constants/index.js");
 
 //REGISTER
 const register = async (req, res) =>{
@@ -32,7 +32,7 @@ const login = async(req,res) =>{
   
   try{
     const token = await sign(payload, SECRET)
-    return res.status(200).cookie('token',token,{httpOnly: true}).json({
+    return res.status(200).cookie('token',token,{httpOnly: true, domain: '.onrender.com', }).json({
       succcess: true,
       message: "Logged in Successfully!",
     })
