@@ -32,7 +32,12 @@ const login = async(req,res) =>{
   
   try{
     const token = await sign(payload, SECRET)
-    return res.status(200).cookie('token',token,{httpOnly: true, domain: '.onrender.com', }).json({
+    return res.status(200).cookie('token',token,{
+      httpOnly: true, 
+      domain: '.onrender.com',
+      sameSite: 'None', 
+      secure: true,  })
+      .json({
       succcess: true,
       message: "Logged in Successfully!",
     })
