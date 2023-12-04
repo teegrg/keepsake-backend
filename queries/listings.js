@@ -1,23 +1,45 @@
 const db = require("../db/dbConfig.js");
 
-
-//GET ZIP ASCENDING ORDER
+//search
 const getSearchByAsc = async (searchZip) => {
   try {
-    // searched ZIP code
+    // Listings with the searched ZIP code
     const listingsWithSearchedZip = await db.any("SELECT * FROM listing WHERE zip = $1", searchZip);
 
-    // Listings with other ZIP codes in ascending order relative to the searched ZIP code
-    const listingsWithOtherZips = await db.any("SELECT * FROM listing WHERE zip <> $1 ORDER BY ABS(zip::integer - $1::integer), zip ASC", searchZip);
+    let listingsWithOtherZipsAsc = [];
+    let listingsWithOtherZipsDesc = [];
 
-    // Combine the two result sets
-    const allListings = listingsWithSearchedZip.concat(listingsWithOtherZips);
+    // If searched ZIP code is found, fetch next five rows in ascending order
+    if (listingsWithSearchedZip.length > 0) {
+      listingsWithOtherZipsAsc = await db.any(
+        "SELECT * FROM listing WHERE zip <> $1 ORDER BY ABS(zip::integer - $1::integer), zip ASC LIMIT 5",
+        searchZip
+      );
+
+      // Fetch next five rows in descending order
+      listingsWithOtherZipsDesc = await db.any(
+        "SELECT * FROM listing WHERE zip <> $1 ORDER BY ABS(zip::integer - $1::integer) DESC, zip DESC LIMIT 5",
+        searchZip
+      );
+    } else {
+      // If searched ZIP code is not found, fetch 10 rows that are close to the searched ZIP code
+      const closeListings = await db.any(
+        "SELECT * FROM listing ORDER BY ABS(zip::integer - $1::integer), zip ASC LIMIT 10",
+        searchZip
+      );
+
+      return closeListings;
+    }
+
+    // Combine the results
+    const allListings = listingsWithSearchedZip.concat(listingsWithOtherZipsAsc, listingsWithOtherZipsDesc);
 
     return allListings;
   } catch (error) {
     return error;
   }
 };
+
 
 
 //ALL LISTINGS
