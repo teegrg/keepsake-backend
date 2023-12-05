@@ -1,7 +1,12 @@
 const { hash } = require("bcryptjs");
 const db = require("../db/dbConfig.js");
 const {sign} = require('jsonwebtoken');
-const { SECRET } = require("../constants/index.js");
+const { SECRET, SERVER_URL } = require("../constants/index.js");
+const url = require('url');
+
+
+const parsedUrl = url.parse(SERVER_URL);
+const hostname = parsedUrl.hostname;
 
 //REGISTER
 const register = async (req, res) =>{
@@ -34,7 +39,7 @@ const login = async(req,res) =>{
     const token = await sign(payload, SECRET)
     return res.status(200).cookie('token',token,{
       httpOnly: true, 
-      domain: 'keepsake-backend.onrender.com',
+      domain: hostname,
       sameSite: 'None', 
       secure: true,  })
       .json({
