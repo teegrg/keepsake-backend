@@ -41,7 +41,8 @@ const login = async(req,res) =>{
       httpOnly: true, 
       domain: hostname,
       sameSite: 'None', 
-      secure: true,  })
+      secure: true,  
+      expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)})
       .json({
       succcess: true,
       message: "Logged in Successfully!",
