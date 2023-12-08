@@ -34,7 +34,7 @@ CREATE TABLE listing (
   type TEXT,
   host INTEGER REFERENCES users (user_id),
   renter INTEGER REFERENCES users (user_id),
-  isRented boolean,
+  is_rented boolean,
   avg_rating INTEGER,
   description TEXT,
   image TEXT

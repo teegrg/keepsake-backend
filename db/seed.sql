@@ -25,7 +25,7 @@ VALUES
 ('Grace', 'Hernandez', '234 Birch St', 'grace@example.com', '555-901-2345', true, 'birch901', '07/26/23', 'renter', 'https://ph-files.imgix.net/824107d2-4381-4a81-bff7-a569e1b37b72.png?auto=format&fit=crop');
 
 
-INSERT INTO listing (street, apt, city, state, zip, size, price, posted_at, type, host, renter, isRented, avg_rating, description, image)
+INSERT INTO listing (street, apt, city, state, zip, size, price, posted_at, type, host, renter, is_rented, avg_rating, description, image)
 VALUES
   ('892 Gerard Ave', 'APT 2F', 'Bronx', 'NY', '10452', '4x4', 50, '2023-10-15', 'Storage', 1, 2, TRUE, 4,'It is big enough for suitcase’s and or clothes.', 'https://i1.wp.com/simplyalignedhome.com/wp-content/uploads/2020/02/Small-closet-with-wire-shelving-removed-scaled.jpg?fit=770%2C1024'),
   ('910 Grand Concourse', 'Flr 2', 'Bronx', 'NY', '10451', '5x5', 75, '2023-10-20', 'Storage', 2, 3, FALSE, 3, 'Max safe and super secure safe box that can hold documents and valuables', 'https://static.wixstatic.com/media/ca2c56_6bb2e8d868154adc96923e469a9b8017~mv2.jpeg/v1/fill/w_640,h_896,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/ca2c56_6bb2e8d868154adc96923e469a9b8017~mv2.jpeg'),
