@@ -44,12 +44,12 @@ const checkSize = (req, res, next) => {
 }
 
 const checkBoolean = (req, res, next) => {
-  const { isRented } = req.body;
-  if (["true", "false", true, false, undefined].includes(isRented)) {
+  const { is_rented } = req.body;
+  if (["true", "false", true, false, undefined].includes(is_rented)) {
     next();
   }
   else {
-    res.status(400).json({ error: "isRented must be a boolean value!" });
+    res.status(400).json({ error: "is_rented must be a boolean value!" });
   }
 };
 
