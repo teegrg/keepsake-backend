@@ -80,11 +80,11 @@ listings.post("/", checkStreet, checkCity, checkState, checkZip, checkSize, chec
 listings.delete("/:id", async (req, res) => {
   const { id } = req.params;
   const deletedItem = await deleteListing(id);
-  if (deletedItem.id) {
+  if (deletedItem.listing_id) {
     res.status(200).json(deletedItem);
   }
   else {
-    res.status(404).json("Song not found!");
+    res.status(404).json("Listing not found!");
   }
 });
 
