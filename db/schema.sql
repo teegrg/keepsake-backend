@@ -7,12 +7,12 @@ DROP TABLE IF EXISTS users;
 
 CREATE TABLE users (
   user_id SERIAL PRIMARY KEY,
-  firstName TEXT NOT NULL,
-  lastName TEXT NOT NULL,
+  first_name TEXT NOT NULL,
+  last_name TEXT NOT NULL,
   address TEXT,
   email varchar(255) UNIQUE NOT NULL,
   phone TEXT,
-  isVerified BOOLEAN,
+  is_verified BOOLEAN,
   password varchar(255) NOT NULL,
   created_at date DEFAULT current_date,
   role TEXT,

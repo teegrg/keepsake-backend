@@ -39,7 +39,7 @@ const loginFeildsCheck = check('email').custom(async(value, {req}) =>{
 
 
 const checkFirstName = (req, res, next) => {
-  if (req.body.firstName) {
+  if (req.body.first_name) {
     next();
   }
   else {
@@ -48,7 +48,7 @@ const checkFirstName = (req, res, next) => {
 }
 
 const checkLastName = (req, res, next) => {
-  if (req.body.lastName) {
+  if (req.body.last_name) {
     next();
   }
   else {
@@ -76,12 +76,12 @@ const checkPhone = (req, res, next) => {
 
 
 const checkBoolean = (req, res, next) => {
-  const { isVerified } = req.body;
-  if (["true", "false", true, false, undefined].includes(isVerified)) {
+  const { is_verified } = req.body;
+  if (["true", "false", true, false, undefined].includes(is_verified)) {
     next();
   }
   else {
-    res.status(400).json({ error: "isVerified must be a boolean value!" });
+    res.status(400).json({ error: "is_verified must be a boolean value!" });
   }
 };
 

@@ -10,17 +10,18 @@ const hostname = parsedUrl.hostname;
 
 //REGISTER
 const register = async (req, res) =>{
-  const {firstName, lastName, email, password} = req.body
+  const {first_name, last_name, email, password} = req.body
 
   try{
     const hashedPassword = await hash(password,10)
-    await db.query('INSERT INTO users (firstName, lastName, email, password) VALUES ($1, $2, $3, $4)', [firstName, lastName, email, hashedPassword])
+    await db.query('INSERT INTO users (first_name, last_name, email, password) VALUES ($1, $2, $3, $4)', [first_name, last_name, email, hashedPassword])
     
     return res.status(201).json({
       succcess: true,
       message: "Regristation Sucess!"
     })  
-  }catch(error){
+  }
+  catch(error) {
     console.log(error.message)
     return res.status(500).json({
       error: error.message
@@ -85,7 +86,7 @@ const logout = async (req, res) => {
 //ALL USERS
 const getAllUsers = async () => {
   try {
-    const allUsers = await db.any("SELECT user_id, firstName, lastName, email, phone, isVerified, created_at, role, image FROM users");
+    const allUsers = await db.any("SELECT user_id, first_name, last_name, email, phone, is_verified, created_at, role, image FROM users");
     return allUsers;
   } catch (error) {
     return error;
@@ -96,7 +97,7 @@ const getAllUsers = async () => {
 // ONE USER
 const getUser = async (id) => {
   try {
-    const oneUser = await db.one("SELECT user_id, firstName, lastName, email, phone, isVerified, created_at, role FROM users WHERE user_id=$1", id);
+    const oneUser = await db.one("SELECT user_id, first_name, last_name, email, phone, is_verified, created_at, role FROM users WHERE user_id=$1", id);
     return oneUser;
   } catch (error) {
     return error;
@@ -107,8 +108,8 @@ const getUser = async (id) => {
 const createUser = async (user) => {
   try {
     const newUser = await db.one(
-      "INSERT INTO users (firstName, lastName, address, enail, phone, verified, password, created_at, role) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *",
-      [user.firstName, user.lastName, user.address, user.email, user.phone, user.verified, user.password, user.created_at]
+      "INSERT INTO users (first_name, last_name, address, enail, phone, verified, password, created_at, role) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *",
+      [user.first_name, user.last_name, user.address, user.email, user.phone, user.verified, user.password, user.created_at]
     );
     return newUser;
   } catch (error) {
@@ -134,8 +135,8 @@ const deleteUser = async (id) => {
 const updateUser = async (id, user) => {
   try {
     const updatedUser = await db.one(
-      "UPDATE users SET firstName=$1, lastName=$2, address=$3, email=$4, phone=$5, verified=$6, password=$7, created_at=$8, role=$9  where user_id=$10 RETURNING *",
-      [user.firstName, user.lastName, user.address, user.email, user.phone, user.verified, user.password, user.created_at, id]
+      "UPDATE users SET first_name=$1, last_name=$2, address=$3, email=$4, phone=$5, verified=$6, password=$7, created_at=$8, role=$9  where user_id=$10 RETURNING *",
+      [user.first_name, user.last_name, user.address, user.email, user.phone, user.verified, user.password, user.created_at, id]
     );
     return updatedUser;
   }catch(error) {
@@ -147,9 +148,10 @@ const updateUser = async (id, user) => {
 const collectListings = async (userId) =>{
   try{
     const listings = await db.any("SELECT * FROM listing WHERE host = $1", userId);
-    return listings
-  }catch(error){
-    return error
+    return listings;
+  }
+  catch(error) {
+    return error;
   }
 }
 module.exports = {
