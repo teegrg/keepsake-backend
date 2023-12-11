@@ -7,6 +7,7 @@ const {
     createBooking,
     deleteBooking,
     updateBooking,
+    getUserBookingsWithDetails
 } = require("../queries/booked.js");
 
 //SHOW ALL BOOKINGS without ID
@@ -88,5 +89,21 @@ booked.put("/:id", async (req, res) => {
       res.status(400).json({ error: "Failed to update booking", details: error.message || error });
     }
   });
-  
+
+booked.get("/user/:userId", async (req, res) => {
+  try {
+      const { userId } = req.params;
+
+      const userBookingsWithDetails = await getUserBookingsWithDetails(userId);
+
+      if (userBookingsWithDetails && userBookingsWithDetails.length > 0) {
+          res.status(200).json(userBookingsWithDetails);
+      } else {
+          res.status(404).json({ error: "No bookings found for this user" });
+      }
+  } catch (error) {
+      res.status(500).json({ error: "Failed to fetch user bookings", details: error.message || error });
+  }
+});
+
 module.exports = booked;
