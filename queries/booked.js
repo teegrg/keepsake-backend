@@ -94,12 +94,49 @@ const getUserBookings = async (userId) => {
     }
   };
 
+
+const getUserBookingsWithDetails = async (userId) => {
+  try {
+    const userBookings = await db.any(`
+      SELECT
+      booked.id AS booking_id,
+      booked.total,
+      booked.status,
+      booked.request,
+      users.user_id AS renter_id,
+      users.first_name AS renter_first_name,
+      users.last_name AS renter_last_name,
+      listing.listing_id,
+      listing.street AS listing_street,
+      listing.city AS listing_city,
+      listing.state AS listing_state,
+      blackoutDates.start_date,
+      blackoutDates.end_date,
+      hosts.user_id AS host_id,
+      hosts.first_name AS host_first_name,
+      hosts.last_name AS host_last_name,
+      hosts.email AS host_email
+      FROM booked
+      JOIN users ON booked.user_id = users.user_id -- Renter details
+      JOIN listing ON booked.listing_id = listing.listing_id
+      JOIN users AS hosts ON listing.host = hosts.user_id -- Host details
+      JOIN blackoutDates ON booked.blackoutdate_id = blackoutDates.id
+      WHERE booked.user_id = $1;`, userId);
+
+    return userBookings;
+  } catch (error) {
+    console.error("Error in getUserBookingsWithDetails query:", error.message || error);
+    throw error;
+  }
+};
+
 module.exports = {
-    getAllBookings,
+  getAllBookings,
   getBookings,
   getBookingById,
   getUserBookings,
   createBooking,
   deleteBooking,
   updateBooking,
+  getUserBookingsWithDetails
 };
