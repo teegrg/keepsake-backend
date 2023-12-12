@@ -110,6 +110,7 @@ const getUserBookingsWithDetails = async (userId) => {
       listing.street AS listing_street,
       listing.city AS listing_city,
       listing.state AS listing_state,
+      blackoutDates.id AS blackoutdate_id,
       blackoutDates.start_date,
       blackoutDates.end_date,
       hosts.user_id AS host_id,
