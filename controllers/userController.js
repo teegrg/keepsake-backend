@@ -86,12 +86,12 @@ users.delete("/:id", async (req, res) => {
   }
 });
 
-// // UPDATE
-// users.put("/:id", checkFirstName, checkLastName, checkAddress, checkEmail, checkPhone, checkPassword, checkBoolean, async (req, res) => {
-//   const { id } = req.params;
-//   const updatedUser = await updateUser(id, req.body);
-//   res.status(200).json(updatedUser);
-// });
+// UPDATE
+users.put("/:id", checkFirstName, checkLastName, checkAddress, checkPhone, async (req, res) => {
+  const { id } = req.params;
+  const updatedUser = await updateUser(id, req.body);
+  res.status(200).json(updatedUser);
+});
 
 //COLLECT
 users.get('/:id/listings', async (req, res) =>{
