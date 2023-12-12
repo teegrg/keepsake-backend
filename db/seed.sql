@@ -41,15 +41,15 @@ VALUES
 INSERT INTO listing_reviews (author_id, listing_id, title, body, rating)
 VALUES
 (1, 1, 'Safe and Secure Storage', 'The storage facility provided a safe and secure place for my items.', 5),
-(1, 2, 'Convenient Storage Solution', 'I found the storage service to be convenient and reliable.', 4),
-(1, 3, 'Clean and Well-Managed', 'The storage space was clean and well-managed, making it easy to access.', 5),
-(4, 4, 'Limited Access Hours', 'One drawback was the limited hours of access to my stored items.', 3),
+(7, 2, 'Convenient Storage Solution', 'I found the storage service to be convenient and reliable.', 4),
+(5, 3, 'Clean and Well-Managed', 'The storage space was clean and well-managed, making it easy to access.', 5),
+(4, 4, 'Highly Recommend', 'A great storage experience overall. I highly recommend this storage facility.', 5),
 (6, 5, 'Helpful Storage Manager', 'The storage manager was very helpful and friendly.', 5),
-(9, 6, 'Average Storage Experience', 'Decent storage space, but it could use some improvements.', 3),
+(9, 6, 'Average Storage Experience', 'Decent storage space, but it could use some improvements.', 5),
 (1, 7, 'Secure Storage Facility', 'The storage facility was secure and well-maintained.', 5),
-(2, 8, 'Damaged Items', 'Unfortunately, some of my items got damaged while in storage.', 2),
+(2, 8, 'Damaged Items', 'Unfortunately, some of my items got damaged while in storage.', 5),
 (3, 9, 'Peace of Mind', 'I had peace of mind knowing my belongings were safe in this storage place.', 4),
-(10, 10, 'Highly Recommend', 'A great storage experience overall. I highly recommend this storage facility.', 5);
+(10, 10, 'Limited Access Hours', 'One drawback was the limited hours of access to my stored items.', 4);
 
 
 
