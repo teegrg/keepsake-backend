@@ -97,7 +97,7 @@ const getAllUsers = async () => {
 // ONE USER
 const getUser = async (id) => {
   try {
-    const oneUser = await db.one("SELECT user_id, first_name, last_name, email, phone, is_verified, created_at, role FROM users WHERE user_id=$1", id);
+    const oneUser = await db.one("SELECT user_id, first_name, last_name, address, email, phone, is_verified, created_at, role FROM users WHERE user_id=$1", id);
     return oneUser;
   } catch (error) {
     return error;
@@ -135,8 +135,8 @@ const deleteUser = async (id) => {
 const updateUser = async (id, user) => {
   try {
     const updatedUser = await db.one(
-      "UPDATE users SET first_name=$1, last_name=$2, address=$3, email=$4, phone=$5, verified=$6, password=$7, created_at=$8, role=$9  where user_id=$10 RETURNING *",
-      [user.first_name, user.last_name, user.address, user.email, user.phone, user.verified, user.password, user.created_at, id]
+      "UPDATE users SET first_name=$1, last_name=$2, address=$3, email=$4, phone=$5 where user_id=$6 RETURNING *",
+      [user.first_name, user.last_name, user.address, user.email, user.phone, id]
     );
     return updatedUser;
   }catch(error) {
