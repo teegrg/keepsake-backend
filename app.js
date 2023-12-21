@@ -14,6 +14,11 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(passport.initialize());
 
+app.use((req, res, next) => {
+    res.locals.STRIPE_PUBLIC_KEY = process.env.STRIPE_PUBLIC_KEY;
+    next();
+  });
+
 //ROUTES
 app.get('/', (req, res) => {
     res.send("Welcome to KEEPSAKE!");
@@ -35,8 +40,6 @@ app.use('/blackout', blackout)
 const booked = require('./controllers/bookedContoller.js');
 app.use('/bookings', booked)
 
-
-
 // Reviews ROUTES
 const user_reviewController = require("./controllers/user_reviewController.js");
 app.use("/userReviews", user_reviewController);
@@ -44,10 +47,13 @@ app.use("/userReviews", user_reviewController);
 const listing_reviewController = require("./controllers/listing_reviewController.js");
 app.use("/listingReviews", listing_reviewController);
 
-
 //PROPERTY_TYPE ROUTE
 const property_typeController = require("./controllers/property_typeController.js");
 app.use("/property_type", property_typeController);
+
+// STRIPE ROUTE
+const paymentRoutes = require("./stripe/paymentRoutes.js")
+app.use('/payments', paymentRoutes);
 
 //404 ROUTE
 app.get("*", (req, res) => {
