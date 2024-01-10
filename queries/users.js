@@ -97,7 +97,7 @@ const getAllUsers = async () => {
 // ONE USER
 const getUser = async (id) => {
   try {
-    const oneUser = await db.one("SELECT user_id, first_name, last_name, address, email, phone, is_verified, created_at, role FROM users WHERE user_id=$1", id);
+    const oneUser = await db.one("SELECT user_id, first_name, last_name, address, email, phone, is_verified, created_at, role, image FROM users WHERE user_id=$1", id);
     return oneUser;
   } catch (error) {
     return error;
