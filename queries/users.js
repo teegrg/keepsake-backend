@@ -22,7 +22,6 @@ const register = async (req, res) =>{
     })  
   }
   catch(error) {
-    console.log(error.message)
     return res.status(500).json({
       error: error.message
     })
@@ -63,7 +62,6 @@ const protected = async (req, res) => {
       user: req.user
     });
   } catch (error) {
-    console.log(error.message);
     return res.status(500).json({ error: error.message });
   }
 };
@@ -76,7 +74,6 @@ const logout = async (req, res) => {
       message:"Logged out!"
     })
   }catch(error){
-    console.log(error.message)
     return res.status(500).json({
       error: error.message
     })

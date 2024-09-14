@@ -74,7 +74,6 @@ const getBlackOutByListingId = async (id) => {
       const blackout = await db.any("SELECT * FROM blackoutDates WHERE listing_id=$1", id);
       return blackout;
   } catch (error) {
-      console.log("Error in blackout query.")
       return error;
   }
 };
