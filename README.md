@@ -22,8 +22,7 @@ Ensure you have these ready
     PG_HOST=<insert_postgreSQL_host_url> # Replace this with your PostgreSQL host (e.g., localhost or a remote database URL)
     PG_PORT=5432 # Replace this with the actual PostgreSQL port (5432 is the default)
     PG_DATABASE=keepsake_dev
-    PG_USER=<insert_postgreSQL_user>    # Replace this with your PostgreSQL user (e.g., postgres or a specific user)
-    
+    PG_USER=<insert_postgreSQL_user> # Replace this with your PostgreSQL user (e.g., postgres or a specific user)
     CLIENT_URL = <front-end link>
     SERVER_URL = <back-end link>
     SECRET = <Any passcode of your choice>
@@ -79,7 +78,7 @@ Visit [http://localhost:8000](http://localhost:8000) to access the server.
 - **GET** - `/users/:userId/bookings`: Retrieves all bookings for a user by their ID.
     - **Response:** Returns a JSON array of bookings or an error if none are found.
 
-## User Review Routes
+### User Review Routes
 - **GET** - `/users/:userId/reviews`: Retrieves reviews for a specific user.
     - **Response:** Returns the reviews of the requested user if found, or a `404` error if not.
 - **POST** - `/users/:userId/reviews`: Creates a new review.
@@ -91,7 +90,7 @@ Visit [http://localhost:8000](http://localhost:8000) to access the server.
     - **Request Body:** Expects a JSON payload with updated review details.
     - **Response:** Returns the updated review.
 
-## Listing Routes
+### Listing Routes
 
 - **GET** - `/search`: Performs a search for listings.
     - **Response:** Returns search results sorted by ascending order or an error if the search fails.
@@ -99,7 +98,7 @@ Visit [http://localhost:8000](http://localhost:8000) to access the server.
     - **Response:** Returns a JSON array containing details of all listings.
 - **GET** - `/listings/:id`: Retrieves a listing by its ID.
     - **Response:** Returns the details of the requested listing if found.
-- **POST** - `/listings     `: Creates a new listing.
+- **POST** - `/listings`: Creates a new listing.
     - **Request Body:** Expects a JSON payload with listing details.
     - **Response:** Returns the created listing or validation error.
 - **DELETE** - `/listings/:id`: Deletes a listing by its ID.
@@ -112,7 +111,7 @@ Visit [http://localhost:8000](http://localhost:8000) to access the server.
 - **GET** - `/:listingId/bookings`: Retrieves all bookings for a listing.
     - **Response:** Returns a JSON array of bookings or an error if none are found.
 
-## Booking Routes
+### Booking Routes
 
 - **GET** - `/bookings`: Retrieves all bookings.
     - **Response:** Returns a JSON array of all bookings.
@@ -133,7 +132,7 @@ Visit [http://localhost:8000](http://localhost:8000) to access the server.
 - **GET** - `/bookings/user/:userId/details`: Retrieves detailed bookings for a user, including information about the booking, the renter, the listing, and blackout dates.
     - **Response:** Returns a JSON object with booking details, including the listing's host and blackout date details.
 
-## Blackout Date 
+### Blackout Date 
 - **GET** - `/blackout`: Retrieve all blackout dates.
     - **Response:** Returns a JSON array of all blackout dates. If no blackout dates are found, returns a `404` with an error message.
 - **GET** - `/blackout/:blackoutId`: Retrieve a specific blackout date by its ID.
@@ -149,7 +148,7 @@ Visit [http://localhost:8000](http://localhost:8000) to access the server.
 - **GET** - `/blackout/listing/:listingId`: Retrieve blackout dates for a specific listing.
     - **Response:** Returns a JSON array of blackout dates for the listing with the provided `listingId`. If no blackout dates are found or an error occurs, returns a `500` error.
 
-## Availability
+### Availability
 
 - **GET** - `/listings/:listingId/availability`: Retrieve availability for a specific listing.
     - **Query Parameter:** `listingId` - The ID of the listing for which availability is being requested.
