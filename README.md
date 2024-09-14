@@ -79,6 +79,18 @@ Visit [http://localhost:8000](http://localhost:8000) to access the server.
 - **GET** - `/users/:userId/bookings`: Retrieves all bookings for a user by their ID.
     - **Response:** Returns a JSON array of bookings or an error if none are found.
 
+## User Review Routes
+- **GET** - `/users/:userId/reviews`: Retrieves reviews for a specific user.
+    - **Response:** Returns the reviews of the requested user if found, or a `404` error if not.
+- **POST** - `/users/:userId/reviews`: Creates a new review.
+    - **Request Body:** Expects a JSON payload with review details.
+    - **Response:** Returns the created review or a `400` error if the request fails.
+- **DELETE** - `/users/:userId/reviews/:id`: Deletes a review by its ID.
+    - **Response:** Returns a confirmation of deletion or a `404` error if the review is not found.
+- **PUT** - `/users/:userId/reviews/:id`: Updates a review by its ID.
+    - **Request Body:** Expects a JSON payload with updated review details.
+    - **Response:** Returns the updated review.
+
 ## Listing Routes
 
 - **GET** - `/search`: Performs a search for listings.
@@ -99,3 +111,46 @@ Visit [http://localhost:8000](http://localhost:8000) to access the server.
     - **Response:** Returns blackout dates for the requested listing or an error if none are found.
 - **GET** - `/:listingId/bookings`: Retrieves all bookings for a listing.
     - **Response:** Returns a JSON array of bookings or an error if none are found.
+
+## Booking Routes
+
+- **GET** - `/bookings`: Retrieves all bookings.
+    - **Response:** Returns a JSON array of all bookings.
+- **GET** - `/bookings/:listingId`: Retrieves bookings for a specific listing by its ID.
+    - **Response:** Returns the bookings of the specified listing or an error if not found.
+- **GET** - `/bookings/:bookingId`: Retrieves a booking by its ID.
+    - **Response:** Returns the details of the requested booking or an error if not found.
+- **POST** - `/bookings`: Creates a new booking.
+    - **Request Body:** Expects a JSON payload with booking details including `user_id`, `listing_id`, `blackoutdate_id`, `total`, `status`, and `request`.
+    - **Response:** Returns the created booking.
+- **DELETE** - `/bookings/:id`: Deletes a booking by its ID.
+    - **Response:** Returns a confirmation of deletion or an error if the booking is not found.
+- **PUT** - `/bookings/:id`: Updates a booking by its ID.
+    - **Request Body:** Expects a JSON payload with updated booking details including `user_id`, `listing_id`, `blackoutdate_id`, `total`, `status`, and `request`.
+    - **Response:** Returns the updated booking.
+- **GET** - `/bookings/user/:userId`: Retrieves bookings for a specific user by their ID.
+    - **Response:** Returns the user's bookings or an error if not found.
+- **GET** - `/bookings/user/:userId/details`: Retrieves detailed bookings for a user, including information about the booking, the renter, the listing, and blackout dates.
+    - **Response:** Returns a JSON object with booking details, including the listing's host and blackout date details.
+
+## Blackout Date 
+- **GET** - `/blackout`: Retrieve all blackout dates.
+    - **Response:** Returns a JSON array of all blackout dates. If no blackout dates are found, returns a `404` with an error message.
+- **GET** - `/blackout/:blackoutId`: Retrieve a specific blackout date by its ID.
+    - **Response:** Returns the blackout date with the provided `blackoutId`. If the blackout date is not found, returns a `404` error.
+- **POST** - `/blackout`: Create a new blackout date.
+    - **Request Body:** Expects a JSON payload with blackout date details.
+    - **Response:** Returns the newly created blackout date. If creation fails, returns a `400` error with details.
+- **DELETE** - `/blackout/:blackoutId`: Delete a specific blackout date by its ID.
+    - **Response:** Returns the deleted blackout date if successful. If the blackout date is not found, returns a `404` error.
+- **PUT** - `/blackout/:blackoutId`: Update a specific blackout date by its ID.
+    - **Request Body:** Expects a JSON payload with updated blackout date details.
+    - **Response:** Returns the updated blackout date if successful. If the blackout date is not found, returns a `404` error.
+- **GET** - `/blackout/listing/:listingId`: Retrieve blackout dates for a specific listing.
+    - **Response:** Returns a JSON array of blackout dates for the listing with the provided `listingId`. If no blackout dates are found or an error occurs, returns a `500` error.
+
+## Availability
+
+- **GET** - `/listings/:listingId/availability`: Retrieve availability for a specific listing.
+    - **Query Parameter:** `listingId` - The ID of the listing for which availability is being requested.
+    - **Response:** Returns the availability details for the listing. If no availability is found, returns a `404` error with a message.
