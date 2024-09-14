@@ -26,7 +26,6 @@ const {
 user_review.get("/", async (req, res) => {
   const { userId } = req.params;
 
-  console.log(userId)
   const review = await getReview(userId);
   if (review) {
     res.json(review);
